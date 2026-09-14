@@ -85,6 +85,20 @@
     .backface-hidden { backface-visibility: hidden; }
     .rotate-y-180 { transform: rotateY(180deg); }
 
+    @keyframes shuffleWiggle {
+      0%   { transform: translateX(0) rotate(0deg); }
+      15%  { transform: translateX(-10px) rotate(-6deg); }
+      30%  { transform: translateX(9px) rotate(5deg); }
+      45%  { transform: translateX(-8px) rotate(-4deg); }
+      60%  { transform: translateX(7px) rotate(3deg); }
+      75%  { transform: translateX(-5px) rotate(-2deg); }
+      100% { transform: translateX(0) rotate(0deg); }
+    }
+    #deckStack.shuffling {
+      animation: shuffleWiggle 0.9s ease-in-out;
+      pointer-events: none;
+    }
+
     ::-webkit-scrollbar { width: 7px; height: 7px; }
     ::-webkit-scrollbar-track { background: #FAF6F0; }
     ::-webkit-scrollbar-thumb { background: #D99B26; border-radius: 9999px; }
@@ -231,7 +245,7 @@
                 <div class="w-14 h-14 rounded-2xl bg-earth-linen border border-earth-sand flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner">
                   <i class="fa-solid fa-hands-praying text-3xl text-earth-terracotta"></i>
                 </div>
-                <span class="text-xs font-serif font-bold tracking-widest text-earth-clay">點擊洗牌抽卡</span>
+                <span id="deckLabel" class="text-xs font-serif font-bold tracking-widest text-earth-clay">點擊洗牌抽卡</span>
                 <span class="text-[10px] text-earth-clay bg-earth-amber/20 px-2.5 py-0.5 rounded-full border border-earth-amber/40 font-bold">大地天使聖卡</span>
               </div>
 
@@ -267,7 +281,7 @@
             </button>
           </div>
 
-          <div id="overallReadingsContent" class="space-y-4 text-earth-espresso text-sm leading-relaxed">
+          <div id="overallReadingsContent" class="space-y-4 text-earth-espresso text-base leading-loose">
           </div>
 
           <div class="bg-earth-linen/70 border border-earth-sand rounded-2xl p-5 space-y-3 shadow-inner">
@@ -287,7 +301,7 @@
             <div class="flex items-center text-earth-clay text-xs font-bold tracking-wider uppercase">
               <i class="fa-solid fa-sun mr-2 text-earth-amber"></i>大天使與大地智者智慧啟示
             </div>
-            <div id="aiTextContent" class="text-earth-espresso text-sm leading-relaxed whitespace-pre-line font-serif">
+            <div id="aiTextContent" class="text-earth-espresso text-base leading-loose whitespace-pre-line font-serif">
               <div class="flex items-center space-x-3 text-earth-terracotta py-4 justify-center">
                 <i class="fa-solid fa-spinner fa-spin text-xl"></i>
                 <span>正在連結大地光芒進行靈性解讀中...</span>
@@ -694,27 +708,45 @@
     }
 
     // Draw Cards Logic
+    let isShuffling = false;
     function drawCards() {
+      if (isShuffling) return;
+      isShuffling = true;
       playChime();
-      let count = 1;
-      if (currentSpread === 'three') count = 3;
-      if (currentSpread === 'four') count = 4;
 
-      // Randomly pick unique cards
-      let shuffled = [...CARDS_DATA].sort(() => 0.5 - Math.random());
-      drawnCardsState = shuffled.slice(0, count);
-      // 每次重新抽卡時，重置翻牌狀態為背面朝上
-      drawnCardsState.forEach(card => { card.revealed = false; });
+      const stack = document.getElementById('deckStack');
+      const label = document.getElementById('deckLabel');
+      stack.classList.add('shuffling');
+      if (label) label.innerText = '洗牌中...';
 
-      renderDrawnCards();
-      buildOverallReading();
-      buildPromptText();
+      // 先隱藏舊結果，讓「洗牌」有明確的過渡感
+      document.getElementById('readingInterpretationSection').classList.add('hidden');
 
-      document.getElementById('readingInterpretationSection').classList.remove('hidden');
-      document.getElementById('aiOutputBox').classList.add('hidden');
-      
-      // Smooth scroll to results
-      document.getElementById('readingInterpretationSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => {
+        let count = 1;
+        if (currentSpread === 'three') count = 3;
+        if (currentSpread === 'four') count = 4;
+
+        // Randomly pick unique cards
+        let shuffled = [...CARDS_DATA].sort(() => 0.5 - Math.random());
+        drawnCardsState = shuffled.slice(0, count);
+        // 每次重新抽卡時，重置翻牌狀態為背面朝上
+        drawnCardsState.forEach(card => { card.revealed = false; });
+
+        renderDrawnCards();
+        buildOverallReading();
+        buildPromptText();
+
+        document.getElementById('readingInterpretationSection').classList.remove('hidden');
+        document.getElementById('aiOutputBox').classList.add('hidden');
+
+        stack.classList.remove('shuffling');
+        if (label) label.innerText = '點擊洗牌抽卡';
+        isShuffling = false;
+
+        // Smooth scroll to results
+        document.getElementById('readingInterpretationSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 900);
     }
 
     function flipCard(id) {
@@ -745,7 +777,7 @@
           <span class="text-xs font-bold text-earth-clay px-3 py-1 rounded-full bg-earth-amber/15 border border-earth-amber/40 shadow-xs">
             ${labels[index]}
           </span>
-          <div class="perspective-1000 w-44 h-72 sm:w-48 sm:h-80 cursor-pointer group" onclick="flipCard(${card.id})">
+          <div class="perspective-1000 w-56 h-80 sm:w-64 sm:h-[26rem] cursor-pointer group" onclick="flipCard(${card.id})">
             <div class="w-full h-full relative transform-style-3d transition-transform duration-700 ${card.revealed ? 'rotate-y-180' : ''} shadow-xl rounded-3xl">
               <!-- Card Front (Back of card design) -->
               <div class="absolute inset-0 w-full h-full backface-hidden rounded-3xl bg-gradient-to-tr from-earth-terracotta via-earth-amber to-earth-sage p-1">
@@ -762,20 +794,20 @@
                 </div>
               </div>
               <!-- Card Back (Revealed Card) -->
-              <div class="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-3xl bg-earth-cream border-2 border-earth-amber p-3 flex flex-col justify-between items-center text-center shadow-md overflow-hidden">
-                <div class="w-full flex justify-between items-center text-[10px] text-earth-taupe font-bold">
+              <div class="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-3xl bg-earth-cream border-2 border-earth-amber p-2 flex flex-col items-center text-center shadow-md overflow-hidden">
+                <div class="w-full flex justify-between items-center text-[10px] text-earth-taupe font-bold px-1 pt-1">
                   <span>No. ${card.imgName}</span>
                   <i class="fa-solid fa-sun text-earth-amber"></i>
                 </div>
-                <!-- 修正圖檔路徑：使用 cards/${card.imgName}.jpg，並加入圖檔載入失敗時的 fallback -->
-                <div class="w-full h-32 rounded-2xl bg-earth-linen/80 border border-earth-sand/80 flex items-center justify-center overflow-hidden relative shadow-inner">
-                  <img src="cards/${card.imgName}.jpg" alt="${card.name}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23F3ECE3\'/><text x=\'50\' y=\'50\' font-size=\'12\' fill=\'%23A6533A\' text-anchor=\'middle\' dominant-baseline=\'middle\'>${card.name.split(' ')[0]}</text></svg>';">
+                <!-- 放大圖片區塊並改用 object-contain，完整顯示牌面設計不裁切 -->
+                <div class="w-full flex-1 min-h-0 rounded-2xl bg-earth-linen/80 border border-earth-sand/80 flex items-center justify-center overflow-hidden relative shadow-inner mt-1">
+                  <img src="cards/${card.imgName}.jpg" alt="${card.name}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23F3ECE3\'/><text x=\'50\' y=\'50\' font-size=\'12\' fill=\'%23A6533A\' text-anchor=\'middle\' dominant-baseline=\'middle\'>${card.name.split(' ')[0]}</text></svg>';">
                 </div>
-                <div class="space-y-1 w-full">
-                  <h4 class="text-xs font-serif font-bold text-earth-espresso line-clamp-1">${card.name}</h4>
-                  <p class="text-[10px] text-earth-terracotta font-bold">${card.title}</p>
+                <div class="space-y-0.5 w-full mt-1 flex-shrink-0">
+                  <h4 class="text-sm font-serif font-bold text-earth-espresso line-clamp-1">${card.name}</h4>
+                  <p class="text-xs text-earth-terracotta font-bold">${card.title}</p>
                 </div>
-                <button onclick="event.stopPropagation(); openCardModal(${card.id})" class="text-[10px] bg-earth-amber/20 hover:bg-earth-amber/30 text-earth-clay px-3 py-1 rounded-full border border-earth-amber/40 font-bold transition-all">
+                <button onclick="event.stopPropagation(); openCardModal(${card.id})" class="text-[10px] bg-earth-amber/20 hover:bg-earth-amber/30 text-earth-clay px-3 py-1 rounded-full border border-earth-amber/40 font-bold transition-all mt-1 flex-shrink-0">
                   點擊看完整解說
                 </button>
               </div>
@@ -798,13 +830,13 @@
       html += `<div class="space-y-3 font-serif">`;
       drawnCardsState.forEach((c, idx) => {
         html += `
-          <div class="p-4 rounded-2xl bg-white/80 border border-earth-sand/80 shadow-xs space-y-1.5">
+          <div class="p-4 rounded-2xl bg-white/80 border border-earth-sand/80 shadow-xs space-y-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-earth-terracotta">${c.name}</span>
-              <span class="text-[11px] text-earth-taupe">${c.keyword}</span>
+              <span class="text-sm font-bold text-earth-terracotta">${c.name}</span>
+              <span class="text-xs text-earth-taupe">${c.keyword}</span>
             </div>
-            <p class="text-xs font-bold text-earth-espresso">${c.message}</p>
-            <p class="text-xs text-earth-taupe leading-relaxed">${c.meaning}</p>
+            <p class="text-base font-bold text-earth-espresso">${c.message}</p>
+            <p class="text-base text-earth-taupe leading-loose">${c.meaning}</p>
           </div>
         `;
       });
@@ -867,15 +899,15 @@
       const modalContent = document.getElementById('modalContent');
       modalContent.innerHTML = `
         <div class="flex flex-col sm:flex-row gap-6 items-center">
-          <div class="w-44 h-72 rounded-3xl bg-earth-cream border-2 border-earth-amber p-3 flex flex-col justify-between items-center text-center shadow-lg relative overflow-hidden flex-shrink-0">
+          <div class="w-52 h-[26rem] rounded-3xl bg-earth-cream border-2 border-earth-amber p-3 flex flex-col items-center text-center shadow-lg relative overflow-hidden flex-shrink-0">
             <div class="w-full flex justify-between items-center text-[10px] text-earth-taupe font-bold">
               <span>No. ${card.imgName}</span>
               <i class="fa-solid fa-sun text-earth-amber"></i>
             </div>
-            <div class="w-full h-36 rounded-2xl bg-earth-linen border border-earth-sand overflow-hidden relative shadow-inner">
-              <img src="cards/${card.imgName}.jpg" alt="${card.name}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23F3ECE3\'/><text x=\'50\' y=\'50\' font-size=\'12\' fill=\'%23A6533A\' text-anchor=\'middle\' dominant-baseline=\'middle\'>${card.name.split(' ')[0]}</text></svg>';">
+            <div class="w-full flex-1 min-h-0 rounded-2xl bg-earth-linen border border-earth-sand overflow-hidden relative shadow-inner mt-1">
+              <img src="cards/${card.imgName}.jpg" alt="${card.name}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23F3ECE3\'/><text x=\'50\' y=\'50\' font-size=\'12\' fill=\'%23A6533A\' text-anchor=\'middle\' dominant-baseline=\'middle\'>${card.name.split(' ')[0]}</text></svg>';">
             </div>
-            <div class="space-y-0.5 w-full">
+            <div class="space-y-0.5 w-full mt-1 flex-shrink-0">
               <h4 class="text-xs font-serif font-bold text-earth-espresso">${card.name}</h4>
               <p class="text-[10px] text-earth-terracotta font-bold">${card.title}</p>
             </div>
