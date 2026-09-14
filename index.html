@@ -758,9 +758,9 @@
                   <span>No. ${card.imgName}</span>
                   <i class="fa-solid fa-sun text-earth-amber"></i>
                 </div>
-                <!-- 修正圖檔路徑：使用 cards/${card.imgName}.png，並加入圖檔載入失敗時的 fallback -->
+                <!-- 修正圖檔路徑：使用 cards/${card.imgName}.jpg，並加入圖檔載入失敗時的 fallback -->
                 <div class="w-full h-32 rounded-2xl bg-earth-linen/80 border border-earth-sand/80 flex items-center justify-center overflow-hidden relative shadow-inner">
-                  <img src="cards/${card.imgName}.png" alt="${card.name}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23F3ECE3\'/><text x=\'50\' y=\'50\' font-size=\'12\' fill=\'%23A6533A\' text-anchor=\'middle\' dominant-baseline=\'middle\'>${card.name.split(' ')[0]}</text></svg>';">
+                  <img src="cards/${card.imgName}.jpg" alt="${card.name}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23F3ECE3\'/><text x=\'50\' y=\'50\' font-size=\'12\' fill=\'%23A6533A\' text-anchor=\'middle\' dominant-baseline=\'middle\'>${card.name.split(' ')[0]}</text></svg>';">
                 </div>
                 <div class="space-y-1 w-full">
                   <h4 class="text-xs font-serif font-bold text-earth-espresso line-clamp-1">${card.name}</h4>
@@ -864,7 +864,7 @@
               <i class="fa-solid fa-sun text-earth-amber"></i>
             </div>
             <div class="w-full h-36 rounded-2xl bg-earth-linen border border-earth-sand overflow-hidden relative shadow-inner">
-              <img src="cards/${card.imgName}.png" alt="${card.name}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23F3ECE3\'/><text x=\'50\' y=\'50\' font-size=\'12\' fill=\'%23A6533A\' text-anchor=\'middle\' dominant-baseline=\'middle\'>${card.name.split(' ')[0]}</text></svg>';">
+              <img src="cards/${card.imgName}.jpg" alt="${card.name}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23F3ECE3\'/><text x=\'50\' y=\'50\' font-size=\'12\' fill=\'%23A6533A\' text-anchor=\'middle\' dominant-baseline=\'middle\'>${card.name.split(' ')[0]}</text></svg>';">
             </div>
             <div class="space-y-0.5 w-full">
               <h4 class="text-xs font-serif font-bold text-earth-espresso">${card.name}</h4>
@@ -950,7 +950,7 @@
           <div class="flex flex-wrap gap-3 pt-2">
             ${item.cards.map(c => `
               <div class="flex items-center space-x-2 px-3 py-2 rounded-2xl bg-earth-linen/80 border border-earth-sand shadow-xs">
-                <img src="cards/${c.imgName}.png" alt="${c.name}" class="w-8 h-10 object-cover rounded-lg" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23F3ECE3\'/><text x=\'50\' y=\'50\' font-size=\'18\' fill=\'--earth-clay\' text-anchor=\'middle\' dominant-baseline=\'middle\'>🎴</text></svg>';">
+                <img src="cards/${c.imgName}.jpg" alt="${c.name}" class="w-8 h-10 object-cover rounded-lg" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23F3ECE3\'/><text x=\'50\' y=\'50\' font-size=\'18\' fill=\'--earth-clay\' text-anchor=\'middle\' dominant-baseline=\'middle\'>🎴</text></svg>';">
                 <div class="text-left">
                   <p class="text-xs font-serif font-bold text-earth-espresso line-clamp-1">${c.name}</p>
                   <p class="text-[10px] text-earth-terracotta">${c.title}</p>
