@@ -69,7 +69,6 @@
       overflow-x: hidden;
     }
 
-    /* Bright Earthy Sunbeam Atmosphere */
     .bg-aura-1 {
       background: radial-gradient(circle, rgba(217, 155, 38, 0.18) 0%, transparent 65%);
     }
@@ -80,32 +79,23 @@
       background: radial-gradient(circle, rgba(126, 139, 108, 0.15) 0%, transparent 65%);
     }
 
-    /* 3D Flip Styles */
     .h-96-card { height: 23.5rem !important; }
     .perspective-1000 { perspective: 1000px; }
     .transform-style-3d { transform-style: preserve-3d; }
     .backface-hidden { backface-visibility: hidden; }
     .rotate-y-180 { transform: rotateY(180deg); }
 
-    /* Custom Earthy Scrollbar */
     ::-webkit-scrollbar { width: 7px; height: 7px; }
     ::-webkit-scrollbar-track { background: #FAF6F0; }
     ::-webkit-scrollbar-thumb { background: #D99B26; border-radius: 9999px; }
     ::-webkit-scrollbar-thumb:hover { background: #C86D51; }
 
-    /* Vibrant Warm Text Gradients */
     .text-earth-gradient {
       background: linear-gradient(135deg, #A6533A 0%, #C86D51 50%, #D99B26 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .text-amber-gradient {
-      background: linear-gradient(135deg, #D99B26 0%, #B45309 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
     
-    /* Bright Warm Glassmorphism */
     .glass-card {
       background: rgba(255, 253, 249, 0.82);
       backdrop-filter: blur(14px);
@@ -120,7 +110,6 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between relative selection:bg-amber-200 selection:text-earth-espresso">
 
-  <!-- Ambient Golden Dust Canvas & Orbs -->
   <canvas id="starsCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-70"></canvas>
   <div class="fixed top-[-10%] left-[-5%] w-[55vw] h-[55vw] bg-aura-1 rounded-full blur-3xl pointer-events-none z-0 animate-sunbeam"></div>
   <div class="fixed bottom-[-10%] right-[-5%] w-[55vw] h-[55vw] bg-aura-2 rounded-full blur-3xl pointer-events-none z-0 animate-sunbeam"></div>
@@ -130,7 +119,6 @@
   <header class="relative z-40 border-b border-earth-sand/80 bg-earth-cream/85 backdrop-blur-md sticky top-0 shadow-sm shadow-earth-terracotta/5">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
       
-      <!-- Brand Logo -->
       <div class="flex items-center space-x-3 cursor-pointer group" onclick="switchTab('divination')">
         <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-earth-terracotta via-earth-amber to-earth-sage p-0.5 shadow-md shadow-earth-terracotta/20 group-hover:scale-105 transition-transform duration-300">
           <div class="w-full h-full bg-earth-cream rounded-[14px] flex items-center justify-center">
@@ -146,7 +134,6 @@
         </div>
       </div>
 
-      <!-- Nav Control & Audio Toggle -->
       <div class="flex items-center space-x-3">
         <nav class="flex items-center space-x-1 bg-earth-linen/80 p-1 rounded-2xl border border-earth-sand/60">
           <button id="nav-divination" onclick="switchTab('divination')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center space-x-2 bg-gradient-to-r from-earth-terracotta to-earth-amber text-white shadow-md shadow-earth-terracotta/20">
@@ -171,7 +158,6 @@
     <!-- TAB 1: DIVINATION -->
     <section id="tab-divination" class="space-y-8 animate-fadeIn">
       
-      <!-- Top Banner Header -->
       <div class="text-center space-y-3.5 max-w-2xl mx-auto pt-2">
         <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-earth-amber/15 border border-earth-amber/40 text-earth-clay text-xs font-bold tracking-wide shadow-sm animate-bounce-slow">
           <i class="fa-solid fa-seedling text-earth-sage"></i>
@@ -183,7 +169,6 @@
           閉上雙眼深呼吸，體會雙腳腳踏大地的沉穩滋養。選擇適合的牌陣，讓大天使為你帶來暖陽般的靈性指引。
         </p>
 
-        <!-- Spread Buttons -->
         <div class="flex flex-wrap justify-center gap-3 pt-2">
           <button onclick="setSpread('single')" id="btn-spread-single" class="px-5 py-2.5 rounded-2xl border text-xs sm:text-sm font-bold transition-all shadow-md bg-gradient-to-r from-earth-terracotta via-earth-amber to-earth-clay border-earth-amber text-white shadow-earth-terracotta/20 scale-105">
             <i class="fa-solid fa-sun mr-2"></i>每日神諭 (單牌)
@@ -197,7 +182,6 @@
         </div>
       </div>
 
-      <!-- Question Prompt Area -->
       <div class="max-w-2xl mx-auto glass-card rounded-3xl p-6 shadow-xl shadow-earth-terracotta/5 relative overflow-hidden">
         <label class="block text-xs font-bold text-earth-clay mb-2 tracking-wider uppercase flex items-center justify-between">
           <span class="flex items-center gap-2">
@@ -214,7 +198,6 @@
           </button>
         </div>
 
-        <!-- Quick Question Chips -->
         <div class="mt-4 flex flex-wrap items-center gap-2 pt-3 border-t border-earth-sand/60">
           <span class="text-[11px] font-bold text-earth-taupe mr-1">快捷靈感：</span>
           <button onclick="setQuickQuestion('請問我今日的整體靈性與大地能量指引為何？')" class="px-3 py-1 rounded-full bg-earth-linen hover:bg-earth-sand/60 border border-earth-sand text-xs text-earth-clay font-medium transition-all">
@@ -232,10 +215,8 @@
         </div>
       </div>
 
-      <!-- Card Deck Section -->
       <div class="space-y-8 pt-2">
         <div id="deckContainer" class="flex justify-center items-center py-4 relative">
-          <!-- Animated Interactive Card Deck DeckStack -->
           <div id="deckStack" onclick="drawCards()" class="group cursor-pointer relative w-44 h-64 sm:w-48 sm:h-72 rounded-3xl p-1 bg-gradient-to-tr from-earth-terracotta via-earth-amber to-earth-sage shadow-xl shadow-earth-terracotta/15 transition-transform duration-300 hover:scale-105 active:scale-95 animate-float">
             <div class="w-full h-full rounded-[22px] bg-earth-cream border border-earth-sand p-3 flex flex-col justify-between items-center text-center relative overflow-hidden">
               <div class="absolute inset-0 bg-[radial-gradient(#c86d51_1px,transparent_1px)] [background-size:14px_14px] opacity-15"></div>
@@ -266,12 +247,9 @@
           </div>
         </div>
 
-        <!-- Drawn Cards Results Area -->
         <div id="drawnCardsArea" class="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center max-w-5xl mx-auto pt-4 min-h-[380px]">
-          <!-- Dynamic cards inserted here -->
         </div>
 
-        <!-- AI Interpretation & Detailed Output Area -->
         <div id="readingInterpretationSection" class="hidden max-w-4xl mx-auto space-y-6 glass-card rounded-3xl p-6 sm:p-8 shadow-xl relative mt-10">
           <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-earth-sand pb-4 gap-4">
             <div class="flex items-center space-x-3">
@@ -290,10 +268,8 @@
           </div>
 
           <div id="overallReadingsContent" class="space-y-4 text-earth-espresso text-sm leading-relaxed">
-            <!-- Interpretations inserted here -->
           </div>
 
-          <!-- Prompt Output Container -->
           <div class="bg-earth-linen/70 border border-earth-sand rounded-2xl p-5 space-y-3 shadow-inner">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-earth-clay uppercase tracking-wider flex items-center gap-2">
@@ -307,7 +283,6 @@
             <textarea id="promptTextarea" readonly class="w-full h-28 bg-white/80 border border-earth-sand rounded-xl p-3 text-xs text-earth-espresso font-mono resize-none focus:outline-none"></textarea>
           </div>
 
-          <!-- Interactive AI Result Output Box -->
           <div id="aiOutputBox" class="hidden bg-white/95 border border-earth-terracotta/40 rounded-2xl p-6 space-y-3 shadow-lg relative">
             <div class="flex items-center text-earth-clay text-xs font-bold tracking-wider uppercase">
               <i class="fa-solid fa-sun mr-2 text-earth-amber"></i>大天使與大地智者智慧啟示
@@ -320,7 +295,6 @@
             </div>
           </div>
 
-          <!-- Action Buttons -->
           <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-earth-sand">
             <button onclick="saveCurrentReading()" class="px-5 py-2.5 rounded-2xl bg-earth-linen hover:bg-earth-sand/50 border border-earth-sand text-earth-clay text-xs font-bold transition-all flex items-center space-x-2 active:scale-95">
               <i class="fa-solid fa-heart text-earth-terracotta"></i>
@@ -347,7 +321,6 @@
       </div>
 
       <div id="journalList" class="space-y-4">
-        <!-- Rendered via JS -->
       </div>
     </section>
 
@@ -361,7 +334,6 @@
       </button>
 
       <div id="modalContent" class="space-y-6">
-        <!-- Injected dynamically -->
       </div>
     </div>
   </div>
@@ -370,368 +342,331 @@
   <footer class="relative z-10 border-t border-earth-sand/80 bg-earth-cream/90 py-6 text-center text-xs text-earth-taupe backdrop-blur-md">
     <div class="max-w-6xl mx-auto px-4 space-y-1.5">
       <p class="font-serif text-earth-clay font-bold">暖陽光芒與大地靈性神諭 · 陪伴你的每日旅程</p>
-      <p>© 2026 Bright Earth Oracle System. Powered by Gemini 3 Flash Intelligence.</p>
+      <p>© 2026 Bright Earth Oracle System. Powered by Gemini Flash Intelligence.</p>
     </div>
   </footer>
 
   <script>
-    // 22 ARCHANGEL ORACLE CARDS - BRIGHT EARTH TONE PALETTES
+    // 22 ARCHANGEL ORACLE CARDS - 完整 22 張牌庫資料（檔名修正為兩位數：01 ~ 22）
     const CARDS_DATA = [
       {
         id: 1,
+        imgName: "01",
         name: "大天使米迦勒 (Archangel Michael)",
         title: "勇氣與神聖守護",
         message: "「切斷不安連結，勇敢踏出信仰的一步。」",
         symbolism: "太陽金色光芒、大地防護之盾、藍天雙翼",
         meaning: "大天使米迦勒隨時守護著你，協助你清除恐懼、疑慮與負面氣場。當你感到迷惘時，米迦勒將賜予你無畏的勇氣與安心感。",
         action: "深呼吸，想像金黃溫暖的暖陽包圍全身，釋放不屬於你的負擔。",
-        bgGradient: "from-amber-100 via-orange-100 to-amber-200",
-        borderColor: "border-earth-terracotta",
-        keyword: "勇氣 / 守護 / 釋放疑慮",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-clay drop-shadow-sm"><path d="M50 10 L60 40 L90 50 L60 60 L50 90 L40 60 L10 50 L40 40 Z" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="50" r="15" fill="currentColor" opacity="0.3"/><line x1="50" y1="5" x2="50" y2="95" stroke="#D99B26" stroke-width="4"/></svg>`
+        keyword: "勇氣 / 守護 / 釋放疑慮"
       },
       {
         id: 2,
+        imgName: "02",
         name: "大天使加百列 (Archangel Gabriel)",
         title: "溝通與靈魂靈感",
         message: "「真誠表達你的心聲，大地靈感正在湧現。」",
         symbolism: "白百合花、金黃號角、暖陽溫柔",
         meaning: "加百列是神聖訊息的傳達者，引導你清晰表達真實自我，並啟發創作力與直覺靈感。",
         action: "寫下你內心最真實的想法，或是開始進行一項小創作。",
-        bgGradient: "from-orange-100 via-amber-100 to-yellow-100",
-        borderColor: "border-earth-amber",
-        keyword: "溝通 / 創作 / 訊息傳遞",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-amber drop-shadow-sm"><circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="3"/><path d="M50 20 L55 40 L75 45 L55 55 L50 80 L45 55 L25 45 L45 40 Z" fill="currentColor" opacity="0.7"/></svg>`
+        keyword: "溝通 / 創作 / 訊息傳遞"
       },
       {
         id: 3,
+        imgName: "03",
         name: "大天使拉斐爾 (Archangel Raphael)",
         title: "身心靈大地療癒",
         message: "「將傷痛交給大地與光，健康的豐盛正在恢復。」",
         symbolism: "鼠尾草綠光、植物療癒之杖、溫柔飛羽",
         meaning: "拉斐爾帶來神聖的大地療癒之力，撫平肉體與情緒上的疲憊，恢復身心靈的和諧狀態。",
         action: "多接觸大自然、赤腳踏在草地上，給自己充分的休息與關懷。",
-        bgGradient: "from-emerald-100 via-teal-50 to-stone-100",
-        borderColor: "border-earth-sage",
-        keyword: "健康 / 療癒 / 扎根平靜",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-sage drop-shadow-sm"><path d="M50 15 C30 35 15 55 50 85 C85 55 70 35 50 15 Z" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="45" r="12" fill="currentColor" opacity="0.4"/></svg>`
+        keyword: "健康 / 療癒 / 扎根平靜"
       },
       {
         id: 4,
+        imgName: "04",
         name: "大天使烏列爾 (Archangel Uriel)",
         title: "智慧與洞察靈光",
         message: "「解答已在你心中，點亮睿智的大地靈光。」",
         symbolism: "琥珀火苗、智慧之書、暖陽照耀",
         meaning: "烏列爾是智慧與啟蒙之光，為混亂的思緒帶來清晰洞察力，指引你突破眼前的盲點。",
         action: "暫停盲目尋找外在解答，靜心傾聽內心深處的冷靜靈感。",
-        bgGradient: "from-yellow-100 via-amber-100 to-orange-100",
-        borderColor: "border-earth-amber",
-        keyword: "洞察 / 智慧 / 靈光乍現",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-amber drop-shadow-sm"><path d="M50 20 Q65 40 50 70 Q35 40 50 20 Z" fill="currentColor" opacity="0.6"/><path d="M50 10 L50 85" stroke="#C86D51" stroke-width="3"/></svg>`
+        keyword: "洞察 / 智慧 / 靈光乍現"
       },
       {
         id: 5,
+        imgName: "05",
         name: "大天使夏彌爾 (Archangel Chamuel)",
         title: "無條件的愛與和諧",
         message: "「愛是一切的解答，尋找心靈的真正安寧。」",
         symbolism: "赤陶粉赭光、和睦雙翅、暖心愛能",
         meaning: "夏彌爾協助你建立健康和諧的人際關係，並找回失落的平靜與無條件自我接納的力量。",
         action: "用溫柔包容的角度對待身邊的人與你自己。",
-        bgGradient: "from-rose-100 via-orange-50 to-amber-100",
-        borderColor: "border-earth-terracotta",
-        keyword: "和諧 / 包容 / 關係修復",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-terracotta drop-shadow-sm"><path d="M50 30 C40 10 10 25 30 55 L50 80 L70 55 C90 25 60 10 50 30 Z" fill="currentColor" opacity="0.5" stroke="currentColor" stroke-width="2"/></svg>`
+        keyword: "和諧 / 包容 / 關係修復"
       },
       {
         id: 6,
+        imgName: "06",
         name: "大天使扎基爾 (Archangel Zadkiel)",
         title: "寬恕與大地轉化",
         message: "「放下過往的沉重，讓溫暖的光淨化你的靈魂。」",
         symbolism: "紫色薰衣草草本、轉化之輪、慈悲目光",
         meaning: "扎基爾帶來寬恕與記憶療癒的力量。原諒他人與自己是解脫束縛的唯一鑰匙。",
         action: "練習對過往的不快說『我選擇釋放與原諒』。",
-        bgGradient: "from-purple-100 via-pink-50 to-amber-100",
-        borderColor: "border-earth-taupe",
-        keyword: "寬恕 / 轉化 / 靈魂釋放",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-taupe drop-shadow-sm"><circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="6,6"/><circle cx="50" cy="50" r="12" fill="currentColor" opacity="0.6"/></svg>`
+        keyword: "寬恕 / 轉化 / 靈魂釋放"
       },
       {
         id: 7,
+        imgName: "07",
         name: "大天使梅塔特隆 (Archangel Metatron)",
         title: "脈輪淨化與頻率提升",
         message: "「調整你的能量頻率，連結神聖大地幾何。」",
         symbolism: "梅塔特隆幾何、大地高頻光環",
         meaning: "梅塔特隆協助你提振高頻振動，清理身心脈輪，推動靈性覺醒與自我實現。",
         action: "透過靜坐想像暖光穿過脊椎，提升思維與精神頻率。",
-        bgGradient: "from-sky-100 via-stone-100 to-amber-100",
-        borderColor: "border-earth-sage",
-        keyword: "脈輪 / 高頻 / 靈性提升",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-sage drop-shadow-sm"><polygon points="50,15 80,35 80,65 50,85 20,65 20,35" fill="none" stroke="currentColor" stroke-width="2"/><line x1="50" y1="15" x2="50" y2="85" stroke="currentColor" stroke-width="2"/></svg>`
+        keyword: "脈輪 / 高頻 / 靈性提升"
       },
       {
         id: 8,
+        imgName: "08",
         name: "大天使漢尼爾 (Archangel Haniel)",
         title: "月亮能量與柔美直覺",
         message: "「信任你的直覺，擁抱優雅的神聖女性力量。」",
         symbolism: "柔美月輝、珍珠光彩、直覺之眼",
         meaning: "漢尼爾引導你順應生命週期與自然節律，傾聽內在微妙的直覺與情感需要。",
         action: "在安靜的夜晚靜坐，感受直覺帶給你的神聖指引。",
-        bgGradient: "from-stone-100 via-amber-50 to-orange-100",
-        borderColor: "border-earth-clay",
-        keyword: "直覺 / 月亮能量 / 柔和優雅",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-clay drop-shadow-sm"><path d="M60 20 A30 30 0 1 0 60 80 A25 25 0 1 1 60 20 Z" fill="currentColor" opacity="0.8"/></svg>`
+        keyword: "直覺 / 月亮能量 / 柔和優雅"
       },
       {
         id: 9,
+        imgName: "09",
         name: "大天使亞列爾 (Archangel Ariel)",
         title: "豐盛顯化與自然大地",
         message: "「自然大地正顯化你的所需，放心接收豐盛。」",
         symbolism: "金黃麥穗、大地綠意、靈獸守護",
         meaning: "亞列爾守護大地與物質豐盛，提醒你與自然連結，相信宇宙永遠為你提供所需。",
         action: "到戶外漫步，感受腳踩大地的安穩與無限滋養。",
-        bgGradient: "from-amber-100 via-emerald-100 to-yellow-100",
-        borderColor: "border-earth-amber",
-        keyword: "豐盛 / 大地連結 / 物質顯化",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-amber drop-shadow-sm"><circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="3"/><path d="M50 22 L50 78 M22 50 L78 50" stroke="#7E8B6C" stroke-width="3"/></svg>`
+        keyword: "豐盛 / 大地連結 / 物質顯化"
       },
       {
         id: 10,
+        imgName: "10",
         name: "大天使沙法爾 (Archangel Tzaphkiel)",
         title: "深層內省與靈魂智慧",
         message: "「在安靜退居中，看見靈魂的智慧藍圖。」",
         symbolism: "岩石大地、時光之匙、沉思神情",
         meaning: "沙法爾帶領你進入心靈深處，檢視人生經歷背後的神聖智慧與學習課題。",
         action: "給自己一段不受打擾的獨處時光，進行內心對話。",
-        bgGradient: "from-stone-200 via-amber-100 to-stone-100",
-        borderColor: "border-earth-taupe",
-        keyword: "內省 / 智慧課題 / 深層靈魂",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-taupe drop-shadow-sm"><polygon points="50,15 85,75 15,75" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="50" r="10" fill="currentColor" opacity="0.5"/></svg>`
+        keyword: "內省 / 智慧課題 / 深層靈魂"
       },
       {
         id: 11,
+        imgName: "11",
         name: "大天使約菲爾 (Archangel Jophiel)",
         title: "快樂美感與心靈光芒",
         message: "「你值得擁有不需要理由的快樂與純粹。」",
         symbolism: "暖金光芒、盛開的大地花朵、美麗靈氣",
         meaning: "約菲爾淨化你的心靈環境，驅散負面思維，幫助你發現生活中無處不在的美麗。",
         action: "清理房間或整理工作檯，用美好的事物裝飾生活。",
-        bgGradient: "from-amber-100 via-yellow-100 to-orange-100",
-        borderColor: "border-earth-amber",
-        keyword: "快樂 / 美感 / 正向心態",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-amber drop-shadow-sm"><circle cx="50" cy="50" r="15" fill="currentColor" opacity="0.6"/><path d="M50 15 L50 85 M15 50 L85 50 M25 25 L75 75 M25 75 L75 25" stroke="currentColor" stroke-width="2"/></svg>`
+        keyword: "快樂 / 美感 / 正向心態"
       },
       {
         id: 12,
+        imgName: "12",
         name: "大天使拉貴爾 (Archangel Raguel)",
         title: "公平秩序與和諧關係",
         message: "「好的關係，不會只有一個人在孤單努力。」",
         symbolism: "古銅秤、和解暖光、雙手握合",
         meaning: "拉貴爾帶來人際關係中的秩序、公平與和平，解決誤會與爭端，建立健康的連結。",
         action: "設定健康的關係界線，坦誠且理性地進行溝通。",
-        bgGradient: "from-orange-100 via-stone-100 to-amber-100",
-        borderColor: "border-earth-clay",
-        keyword: "公平 / 界線 / 和諧關係",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-clay drop-shadow-sm"><path d="M20 35 L80 35 M50 20 L50 75 M30 75 L70 75" stroke="currentColor" stroke-width="3"/><circle cx="30" cy="45" r="8" fill="currentColor" opacity="0.5"/><circle cx="70" cy="45" r="8" fill="currentColor" opacity="0.5"/></svg>`
+        keyword: "公平 / 界線 / 和諧關係"
       },
       {
         id: 13,
+        imgName: "13",
         name: "大天使桑達芬 (Archangel Sandalphon)",
         title: "願望顯化與神聖音律",
         message: "「願望需要被表達，也需要被腳踏實地實現。」",
         symbolism: "大地音符、祈禱飛羽、連結天地之光",
         meaning: "桑達芬傳遞你的祈禱至神聖源頭，並透過音樂與細微徵兆回應你，加速顯化進程。",
         action: "聆聽療癒音樂，清晰地說出你心目中的願望。",
-        bgGradient: "from-emerald-100 via-amber-100 to-orange-100",
-        borderColor: "border-earth-sage",
-        keyword: "顯化 / 祈禱 / 音樂頻率",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-sage drop-shadow-sm"><path d="M35 65 A10 10 0 1 1 35 45 L65 25 L65 55 A10 10 0 1 1 65 35" fill="none" stroke="currentColor" stroke-width="3"/></svg>`
+        keyword: "顯化 / 祈禱 / 音樂頻率"
       },
       {
         id: 14,
+        imgName: "14",
         name: "大天使麥達昶 (Archangel Metatron - 蛻變)",
         title: "蛻變突破與嶄新篇章",
         message: "「成長的你，不必再回到過去的舊模式。」",
         symbolism: "幾何立方體、璀璨暖陽、揚升雙翼",
         meaning: "提醒你已經跨越舊有的限制，擁抱嶄新的自己，告別過往的枷鎖與自我懷疑。",
         action: "歡慶自己的進步，勇敢承諾踏上新的旅程。",
-        bgGradient: "from-amber-100 via-orange-100 to-red-100",
-        borderColor: "border-earth-terracotta",
-        keyword: "蛻變 / 成長 / 跨越限制",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-terracotta drop-shadow-sm"><polygon points="50,20 75,40 75,70 50,90 25,70 25,40" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="55" r="10" fill="currentColor" opacity="0.5"/></svg>`
+        keyword: "蛻變 / 成長 / 跨越限制"
       },
       {
         id: 15,
+        imgName: "15",
         name: "大天使亞列爾 (Archangel Ariel - 獅子無畏)",
         title: "勇敢無畏與內在力量",
         message: "「順應你內心的堅韌與真實力量。」",
         symbolism: "雄獅守護、大地晨光、無畏目光",
         meaning: "喚醒你內在如獅子般的勇氣與堅定信念，無論環境如何變化都能屹立不搖。",
         action: "相信自己的直覺與能力，大膽採取實際行動。",
-        bgGradient: "from-orange-100 via-yellow-100 to-amber-100",
-        borderColor: "border-earth-clay",
-        keyword: "勇氣 / 堅定 / 內在力量",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-clay drop-shadow-sm"><circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width="3"/><polygon points="50,25 60,45 80,50 60,55 50,75 40,55 20,50 40,45" fill="currentColor" opacity="0.6"/></svg>`
+        keyword: "勇氣 / 堅定 / 內在力量"
       },
       {
         id: 16,
+        imgName: "16",
         name: "大天使塞拉菲爾 (Archangel Seraphiel)",
         title: "純淨空性與靈魂洗禮",
         message: "「當你清空不需要的，真正重要的才有空間。」",
         symbolism: "暖白光芒、熾天使飛羽、純淨心靈",
-        meaning: "塞拉菲爾協助你清理過度繁雜的念頭與欲望，回歸最純淨無瑕的本心靈性。",
-        action: "進行一次環境或心靈上的斷捨離。",
-        bgGradient: "from-amber-50 via-stone-100 to-yellow-50",
-        borderColor: "border-earth-sand",
-        keyword: "純淨 / 斷捨離 / 回歸本心",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-amber drop-shadow-sm"><circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" stroke-width="2"/><path d="M50 10 L50 90 M10 50 L90 50" stroke="currentColor" stroke-width="2" opacity="0.7"/></svg>`
+        meaning: "塞拉菲爾協助你清理過度繁雜的念頭與欲望，回歸最純粹清明的內在狀態。",
+        action: "進行一次數位排毒或整理思緒，釋放多餘的雜訊。",
+        keyword: "純淨 / 清理 / 靈魂洗禮"
       },
       {
         id: 17,
-        name: "希望天使 (Archangel Hope)",
-        title: "曙光乍現與嶄新希望",
-        message: "「溫暖的曙光，總是在微寒之後如約而至。」",
-        symbolism: "大地晨曦、飛翔白鴿、希望之星",
-        meaning: "希望天使帶來永不熄滅的光芒，告訴你眼前的陰霾即將散去，美好的新階段正在展開。",
-        action: "保持樂觀期待，相信一切都是最好的安排。",
-        bgGradient: "from-yellow-100 via-orange-100 to-amber-100",
-        borderColor: "border-earth-amber",
-        keyword: "希望 / 曙光 / 嶄新開始",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-amber drop-shadow-sm"><path d="M50 20 L58 38 L78 38 L62 50 L68 70 L50 56 L32 70 L38 50 L22 38 L42 38 Z" fill="currentColor" opacity="0.7"/></svg>`
+        imgName: "17",
+        name: "大天使拉斐爾 (Archangel Raphael - 綠光脈輪)",
+        title: "愛與信任的脈輪療癒",
+        message: "「打開心門，讓翠綠的療癒光流淌全身。」",
+        symbolism: "翠綠光束、心輪之光、溫柔治癒",
+        meaning: "進一步深化心輪的開展，修復情感創傷，學會重新信任生命與愛。",
+        action: "將手輕放胸口，感受每次呼吸帶來的平靜與釋懷。",
+        keyword: "心輪 / 信任 / 情感修復"
       },
       {
         id: 18,
-        name: "信仰天使 (Archangel Faith)",
-        title: "堅定信念與宇宙信任",
-        message: "「真正的堅強，是在未知中依然選擇相信。」",
-        symbolism: "定海神針、赤陶信念光芒、穩固守護",
-        meaning: "信仰天使強健你的信心，讓你在面臨未知挑戰時依然能穩定內心，不被動搖。",
-        action: "將焦慮交給大地與宇宙，選擇堅定相信你的道路。",
-        bgGradient: "from-amber-100 via-rose-50 to-orange-100",
-        borderColor: "border-earth-terracotta",
-        keyword: "信念 / 信任 / 穩固內心",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-terracotta drop-shadow-sm"><path d="M50 15 L80 35 L80 65 L50 85 L20 65 L20 35 Z" fill="currentColor" opacity="0.4" stroke="currentColor" stroke-width="2"/></svg>`
+        imgName: "18",
+        name: "大天使拉貴爾 (Archangel Raguel - 和平使者)",
+        title: "內在和平與紛擾平息",
+        message: "「外在的紛擾只是倒影，先找回內心的和平。」",
+        symbolism: "和平橄欖枝、大地微風、金黃柔光",
+        meaning: "協助你排解內在的衝突與外在的紛爭，在混亂中成為平穩的錨點。",
+        action: "在衝突發生時先深呼吸三次，退一步看見全局。",
+        keyword: "和平 / 內在安寧 / 紛擾平息"
       },
       {
         id: 19,
-        name: "愛的天使 (Archangel Charity)",
-        title: "溫柔慈悲與無條件允許",
-        message: "「愛不是要求改變，而是允許對方做自己。」",
-        symbolism: "溫柔雙手、赤陶暖心、慈愛光環",
-        meaning: "愛的天使帶來無條件的包容與慈悲，學習放下批判，以溫柔的心看待世界。",
-        action: "用愛與理解代替抱怨與責備。",
-        bgGradient: "from-rose-100 via-orange-100 to-amber-100",
-        borderColor: "border-earth-clay",
-        keyword: "溫柔 / 慈悲 / 無條件允許",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-clay drop-shadow-sm"><circle cx="35" cy="40" r="18" fill="currentColor" opacity="0.5"/><circle cx="65" cy="40" r="18" fill="currentColor" opacity="0.5"/><polygon points="18,45 82,45 50,80" fill="currentColor" opacity="0.5"/></svg>`
+        imgName: "19",
+        name: "大天使約菲爾 (Archangel Jophiel - 靈性之美)",
+        title: "發現日常中的神聖之美",
+        message: "「美不在遠方，而在你用心感受的每個當下。」",
+        symbolism: "晨曦微光、大地花瓣、靈性覺察",
+        meaning: "約菲爾帶領你用欣賞的眼光看待周遭人事，提升生活品味與內在愉悅感。",
+        action: "觀察身邊一個小巧美麗的事物，並在心中表達感謝。",
+        keyword: "品味 / 日常之美 / 覺察感謝"
       },
       {
         id: 20,
-        name: "和平天使 (Archangel Christine)",
-        title: "內在沉靜與自然解答",
-        message: "「心真正靜下來，解答就會自然浮現。」",
-        symbolism: "澄澈暖光、沉靜氣場、智慧啟蒙",
-        meaning: "和平天使帶來靈魂深處的沉靜力量。當騷動退去後，真實解答與智慧將自然顯現。",
-        action: "在嘈雜的世界裡，保有內心的靜謐角落。",
-        bgGradient: "from-stone-100 via-emerald-50 to-amber-100",
-        borderColor: "border-earth-sage",
-        keyword: "內在平靜 / 澄澈心智 / 自然解答",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-sage drop-shadow-sm"><circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="3"/><line x1="20" y1="50" x2="80" y2="50" stroke="currentColor" stroke-width="2"/></svg>`
+        imgName: "20",
+        name: "大天使烏列爾 (Archangel Uriel - 靈魂覺醒)",
+        title: "靈性覺醒與真相之光",
+        message: "「迷霧已然散去，看清生命真實的方向。」",
+        symbolism: "破曉曙光、智慧火焰、明亮視野",
+        meaning: "烏列爾帶領你突破盲點，看清當前局勢的真相，迎向靈性視野的大幅提升。",
+        action: "誠實面對自己的內心，不再逃避真正重要的答案。",
+        keyword: "真相 / 靈性覺醒 / 破除盲點"
       },
       {
         id: 21,
+        imgName: "21",
         name: "大天使丹尼爾 (Archangel Daniel)",
-        title: "慈悲庇護與安全感",
-        message: "「在大地的庇護下，不安與擔憂皆化為平安。」",
-        symbolism: "翡翠綠光、溫暖披風、安撫手勢",
-        meaning: "大天使丹尼爾提供溫柔而堅固的情感庇護，撫平你的焦慮，讓你重新感受安全的愛。",
-        action: "雙手撫心，感受溫暖的平靜流入心房。",
-        bgGradient: "from-emerald-100 via-amber-50 to-stone-100",
-        borderColor: "border-earth-sage",
-        keyword: "慈悲庇護 / 安全感 / 心靈撫慰",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-sage drop-shadow-sm"><path d="M50 15 Q80 40 50 85 Q20 40 50 15 Z" fill="currentColor" opacity="0.5" stroke="currentColor" stroke-width="2"/></svg>`
+        title: "正義慈悲與真理守護",
+        message: "「慈悲伴隨公正，你的努力正被宇宙公正對待。」",
+        symbolism: "天秤平衡、金色真理之光、大地守護",
+        meaning: "丹尼爾為你帶來公正的決斷與溫暖的慈悲，確保每項努力都獲得對應的善果。",
+        action: "對自己保持公允，不苛責、不輕視自己的每一步付出。",
+        keyword: "公正 / 慈悲 / 善果迴響"
       },
       {
         id: 22,
+        imgName: "22",
         name: "紫水晶天使 (Amethyst Angel)",
-        title: "靈魂淨化與光芒重塑",
-        message: "「將舊有負能轉化為純粹的光與扎根力量。」",
-        symbolism: "薰衣草草本光芒、轉化火焰、高頻光環",
-        meaning: "紫水晶天使運用轉化火焰幫助你清理重負與舊有業力限制，使靈魂重獲清亮。",
-        action: "閉眼默想暖光包圍，將所有困擾轉化為正能量。",
-        bgGradient: "from-purple-100 via-amber-100 to-rose-100",
-        borderColor: "border-earth-terracotta",
-        keyword: "能量轉換 / 靈魂重塑 / 扎根",
-        svgIcon: `<svg viewBox="0 0 100 100" class="w-20 h-20 text-earth-clay drop-shadow-sm"><polygon points="50,15 75,35 65,80 35,80 25,35" fill="none" stroke="currentColor" stroke-width="3"/><line x1="50" y1="15" x2="50" y2="80" stroke="currentColor" stroke-width="2"/></svg>`
+        title: "高頻靈性轉化與守護",
+        message: "「紫水晶般的寧靜高頻，正包覆著你的靈魂。」",
+        symbolism: "深紫水晶、高頻防護罩、靈性淨化",
+        meaning: "象徵極高頻率的靈性能量與神聖保護，幫助你隔絕外界雜訊，回歸靈魂本源。",
+        action: "想像自己身處一團溫暖的紫水晶光暈中，安然入定。",
+        keyword: "紫水晶 / 高頻守護 / 靈魂歸位"
       }
     ];
 
-    // App State Variables
+    // State Variables
     let currentSpread = 'single';
-    let drawnCards = [];
-    let isAudioMuted = false;
-    let journalLogs = JSON.parse(localStorage.getItem('bright_earth_journal_logs') || '[]');
+    let drawnCardsState = [];
+    let isAudioEnabled = true;
+    let audioCtx = null;
 
-    // Audio Chime Synthesizer
-    function playCrystalSound(type = 'draw') {
-      if (isAudioMuted) return;
+    // Audio helper (Web Audio API subtle chime)
+    function playChime() {
+      if (!isAudioEnabled) return;
       try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        if (type === 'draw') {
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(528, ctx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(1056, ctx.currentTime + 0.35);
-          gain.gain.setValueAtTime(0.15, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.55);
-          osc.start();
-          osc.stop(ctx.currentTime + 0.55);
-        } else if (type === 'flip') {
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(432, ctx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(864, ctx.currentTime + 0.25);
-          gain.gain.setValueAtTime(0.18, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
-          osc.start();
-          osc.stop(ctx.currentTime + 0.35);
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
-      } catch (e) {}
-    }
-
-    function toggleAudio() {
-      isAudioMuted = !isAudioMuted;
-      const icon = document.getElementById('audioIcon');
-      if (isAudioMuted) {
-        icon.className = "fa-solid fa-volume-xmark text-earth-taupe/60";
-      } else {
-        icon.className = "fa-solid fa-volume-high text-earth-clay";
-        playCrystalSound('flip');
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(528, audioCtx.currentTime); // 528Hz Solfeggio frequency
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.2);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 1.2);
+      } catch (e) {
+        console.log("Audio not allowed yet");
       }
     }
 
+    function toggleAudio() {
+      isAudioEnabled = !isAudioEnabled;
+      const icon = document.getElementById('audioIcon');
+      const btn = document.getElementById('audioToggleBtn');
+      if (isAudioEnabled) {
+        icon.className = "fa-solid fa-volume-high";
+        btn.classList.remove('opacity-50');
+        playChime();
+      } else {
+        icon.className = "fa-solid fa-volume-xmark";
+        btn.classList.add('opacity-50');
+      }
+    }
+
+    // Switch Tabs
     function switchTab(tabName) {
-      ['divination', 'journal'].forEach(t => {
-        document.getElementById(`tab-${t}`).classList.add('hidden');
-        document.getElementById(`nav-${t}`).className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-earth-espresso hover:bg-earth-sand/40 transition-all flex items-center space-x-2";
-      });
+      playChime();
+      const divSec = document.getElementById('tab-divination');
+      const jourSec = document.getElementById('tab-journal');
+      const navDiv = document.getElementById('nav-divination');
+      const navJour = document.getElementById('nav-journal');
 
-      document.getElementById(`tab-${tabName}`).classList.remove('hidden');
-      document.getElementById(`nav-${tabName}`).className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center space-x-2 bg-gradient-to-r from-earth-terracotta to-earth-amber text-white shadow-md shadow-earth-terracotta/20";
+      if (tabName === 'divination') {
+        divSec.classList.remove('hidden');
+        jourSec.classList.add('hidden');
+        navDiv.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center space-x-2 bg-gradient-to-r from-earth-terracotta to-earth-amber text-white shadow-md shadow-earth-terracotta/20";
+        navJour.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-earth-espresso hover:bg-earth-sand/40 transition-all flex items-center space-x-2";
+      } else {
+        divSec.classList.add('hidden');
+        jourSec.classList.remove('hidden');
+        navJour.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center space-x-2 bg-gradient-to-r from-earth-terracotta to-earth-amber text-white shadow-md shadow-earth-terracotta/20";
+        navDiv.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-earth-espresso hover:bg-earth-sand/40 transition-all flex items-center space-x-2";
+        renderJournal();
+      }
     }
 
-    function setQuickQuestion(text) {
-      document.getElementById('userQuestion').value = text;
-      playCrystalSound('flip');
-    }
-
-    function setSpread(mode) {
-      currentSpread = mode;
-      ['single', 'three', 'four'].forEach(m => {
-        const btn = document.getElementById(`btn-spread-${m}`);
-        if (m === mode) {
+    // Spread Selection
+    function setSpread(type) {
+      playChime();
+      currentSpread = type;
+      ['single', 'three', 'four'].forEach(s => {
+        const btn = document.getElementById(`btn-spread-${s}`);
+        if (s === type) {
           btn.className = "px-5 py-2.5 rounded-2xl border text-xs sm:text-sm font-bold transition-all shadow-md bg-gradient-to-r from-earth-terracotta via-earth-amber to-earth-clay border-earth-amber text-white shadow-earth-terracotta/20 scale-105";
         } else {
           btn.className = "px-5 py-2.5 rounded-2xl border border-earth-sand bg-earth-linen/60 text-earth-espresso hover:border-earth-terracotta/60 text-xs sm:text-sm font-semibold transition-all";
@@ -740,264 +675,216 @@
       shuffleAndReset();
     }
 
+    function setQuickQuestion(text) {
+      playChime();
+      document.getElementById('userQuestion').value = text;
+    }
+
     function shuffleAndReset() {
-      playCrystalSound('draw');
-      drawnCards = [];
+      playChime();
       document.getElementById('drawnCardsArea').innerHTML = '';
       document.getElementById('readingInterpretationSection').classList.add('hidden');
       document.getElementById('aiOutputBox').classList.add('hidden');
+      drawnCardsState = [];
       
-      const deckStack = document.getElementById('deckStack');
-      deckStack.classList.add('animate-bounce');
-      setTimeout(() => deckStack.classList.remove('animate-bounce'), 600);
+      const stack = document.getElementById('deckStack');
+      stack.classList.remove('animate-float');
+      void stack.offsetWidth;
+      stack.classList.add('animate-float');
     }
 
+    // Draw Cards Logic
     function drawCards() {
-      playCrystalSound('draw');
-      
+      playChime();
       let count = 1;
       if (currentSpread === 'three') count = 3;
       if (currentSpread === 'four') count = 4;
 
-      const shuffled = [...CARDS_DATA].sort(() => 0.5 - Math.random());
-      drawnCards = shuffled.slice(0, count);
+      // Randomly pick unique cards
+      let shuffled = [...CARDS_DATA].sort(() => 0.5 - Math.random());
+      drawnCardsState = shuffled.slice(0, count);
 
       renderDrawnCards();
+      buildOverallReading();
+      buildPromptText();
+
+      document.getElementById('readingInterpretationSection').classList.remove('hidden');
+      document.getElementById('aiOutputBox').classList.add('hidden');
+      
+      // Smooth scroll to results
+      document.getElementById('readingInterpretationSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function renderDrawnCards() {
       const area = document.getElementById('drawnCardsArea');
       area.innerHTML = '';
+      
+      let gridCols = "grid-cols-1 md:grid-cols-1 max-w-sm";
+      if (currentSpread === 'three') gridCols = "grid-cols-1 md:grid-cols-3 max-w-5xl";
+      if (currentSpread === 'four') gridCols = "grid-cols-2 md:grid-cols-4 max-w-6xl";
+      area.className = `grid ${gridCols} gap-6 justify-center mx-auto pt-4`;
 
-      const spreadPositions = {
-        'single': ['聖示指引'],
-        'three': ['過去 / 根源', '現在 / 狀態', '未來 / 指引'],
-        'four': ['身體 / 能量', '心智 / 情緒', '靈魂 / 訊息', '大地特別指引']
-      }[currentSpread];
+      const labels = currentSpread === 'single' ? ['今日神諭'] :
+                     currentSpread === 'three' ? ['過去根基', '現在狀態', '未來指引'] :
+                     ['身分探索', '心靈狀態', '靈性課題', '最終指引'];
 
-      drawnCards.forEach((card, index) => {
-        const posTitle = spreadPositions[index] || `位置 ${index + 1}`;
-
-        const cardHtml = `
-          <div class="space-y-3 flex flex-col items-center animate-fadeIn">
-            <span class="px-3.5 py-1 bg-gradient-to-r from-earth-linen to-earth-sand border border-earth-amber/40 rounded-full text-xs font-bold text-earth-clay shadow-sm">
-              ✨ ${posTitle}
-            </span>
-            
-            <div onclick="flipCardElement(this)" class="perspective-1000 w-60 h-96-card cursor-pointer group">
-              <div class="card-inner relative w-full h-96-card rounded-3xl transition-transform duration-700 transform-style-3d shadow-xl">
-                
-                <!-- Front Side (Flipped Card View - Bright Earth Tone) -->
-                <div class="absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br ${card.bgGradient} border-2 ${card.borderColor} p-5 flex flex-col justify-between backface-hidden rotate-y-180 overflow-hidden shadow-lg">
-                  
-                  <div class="flex justify-between items-start z-10">
-                    <span class="text-xs font-bold text-earth-clay bg-white/80 px-2.5 py-1 rounded-xl border border-earth-sand">#${card.id}</span>
-                    <span class="text-[11px] font-bold text-earth-terracotta bg-white/80 px-2.5 py-1 rounded-xl border border-earth-terracotta/30">${card.keyword.split('/')[0]}</span>
-                  </div>
-
-                  <!-- Central SVG Graphic -->
-                  <div class="my-auto flex flex-col items-center space-y-3 z-10">
-                    <div class="p-3.5 rounded-full bg-white/60 border border-earth-sand backdrop-blur-sm shadow-sm animate-pulse-glow">
-                      ${card.svgIcon}
+      drawnCardsState.forEach((card, index) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = "flex flex-col items-center space-y-3";
+        
+        wrapper.innerHTML = `
+          <span class="text-xs font-bold text-earth-clay px-3 py-1 rounded-full bg-earth-amber/15 border border-earth-amber/40 shadow-xs">
+            ${labels[index]}
+          </span>
+          <div class="perspective-1000 w-44 h-72 sm:w-48 sm:h-80 cursor-pointer group" onclick="openCardModal(${card.id})">
+            <div class="w-full h-full relative transform-style-3d transition-transform duration-700 group-hover:rotate-y-180 shadow-xl rounded-3xl">
+              <!-- Card Front (Back of card design) -->
+              <div class="absolute inset-0 w-full h-full backface-hidden rounded-3xl bg-gradient-to-tr from-earth-terracotta via-earth-amber to-earth-sage p-1">
+                <div class="w-full h-full bg-earth-cream rounded-[22px] flex flex-col justify-between items-center p-4 text-center relative overflow-hidden border border-earth-sand">
+                  <div class="absolute inset-0 bg-[radial-gradient(#c86d51_1px,transparent_1px)] [background-size:12px_12px] opacity-15"></div>
+                  <div class="text-earth-amber text-xs"><i class="fa-solid fa-sun"></i></div>
+                  <div class="my-auto space-y-2 relative z-10">
+                    <div class="w-12 h-12 mx-auto rounded-2xl bg-earth-linen flex items-center justify-center border border-earth-sand shadow-inner">
+                      <i class="fa-solid fa-feather-pointed text-earth-terracotta text-lg"></i>
                     </div>
-                    
-                    <div class="text-center space-y-1">
-                      <h4 class="text-base font-bold text-earth-espresso font-serif tracking-wide">${card.name}</h4>
-                      <p class="text-xs text-earth-clay font-bold">${card.title}</p>
-                    </div>
+                    <p class="text-xs font-serif font-bold text-earth-clay">牌卡翻轉</p>
                   </div>
-
-                  <div class="z-10 bg-white/85 p-3 rounded-2xl border border-earth-sand text-center backdrop-blur-sm space-y-1 shadow-sm">
-                    <p class="text-xs text-earth-espresso/90 italic font-serif">${card.message}</p>
-                    <button onclick="event.stopPropagation(); openModal(${card.id})" class="text-[11px] font-bold text-earth-terracotta hover:text-earth-clay transition-colors pt-1 block mx-auto">
-                      <i class="fa-solid fa-sparkles mr-1"></i>看完整細節指引
-                    </button>
-                  </div>
-
-                  <!-- Subtle background glow -->
-                  <div class="absolute top-0 right-0 w-24 h-24 bg-amber-200/40 rounded-full blur-xl pointer-events-none"></div>
+                  <div class="text-earth-amber text-xs"><i class="fa-solid fa-seedling"></i></div>
                 </div>
-
-                <!-- Back Side (Deck Card Cover - Sand & Linen Pattern) -->
-                <div class="absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-earth-cream via-earth-linen to-earth-sand border-2 border-earth-amber/80 p-4 flex flex-col justify-between items-center text-center backface-hidden shadow-xl group-hover:border-earth-terracotta transition-colors">
-                  <div class="w-full h-full rounded-2xl border border-earth-sand p-3 flex flex-col justify-between items-center bg-white/50 relative overflow-hidden">
-                    <div class="absolute inset-0 bg-[radial-gradient(#c86d51_1px,transparent_1px)] [background-size:12px_12px] opacity-20"></div>
-                    <i class="fa-solid fa-sun text-earth-amber text-xs"></i>
-                    
-                    <div class="text-earth-espresso space-y-3 relative z-10">
-                      <div class="w-12 h-12 rounded-2xl bg-earth-linen border border-earth-sand flex items-center justify-center mx-auto shadow-inner">
-                        <i class="fa-solid fa-hands-praying text-2xl text-earth-terracotta"></i>
-                      </div>
-                      <p class="text-xs font-serif font-bold tracking-widest text-earth-clay">點擊揭開聖牌</p>
-                    </div>
-                    
-                    <i class="fa-solid fa-leaf text-earth-sage text-xs"></i>
-                  </div>
+              </div>
+              <!-- Card Back (Revealed Card) -->
+              <div class="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-3xl bg-earth-cream border-2 border-earth-amber p-3 flex flex-col justify-between items-center text-center shadow-md overflow-hidden">
+                <div class="w-full flex justify-between items-center text-[10px] text-earth-taupe font-bold">
+                  <span>No. ${card.imgName}</span>
+                  <i class="fa-solid fa-sun text-earth-amber"></i>
                 </div>
-
+                <!-- 修正圖檔路徑：使用 cards/${card.imgName}.png，並加入圖檔載入失敗時的 fallback -->
+                <div class="w-full h-32 rounded-2xl bg-earth-linen/80 border border-earth-sand/80 flex items-center justify-center overflow-hidden relative shadow-inner">
+                  <img src="cards/${card.imgName}.png" alt="${card.name}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23F3ECE3\'/><text x=\'50\' y=\'50\' font-size=\'12\' fill=\'%23A6533A\' text-anchor=\'middle\' dominant-baseline=\'middle\'>${card.name.split(' ')[0]}</text></svg>';">
+                </div>
+                <div class="space-y-1 w-full">
+                  <h4 class="text-xs font-serif font-bold text-earth-espresso line-clamp-1">${card.name}</h4>
+                  <p class="text-[10px] text-earth-terracotta font-bold">${card.title}</p>
+                </div>
+                <button class="text-[10px] bg-earth-amber/20 hover:bg-earth-amber/30 text-earth-clay px-3 py-1 rounded-full border border-earth-amber/40 font-bold transition-all">
+                  點擊看完整解說
+                </button>
               </div>
             </div>
           </div>
         `;
-        area.insertAdjacentHTML('beforeend', cardHtml);
+        area.appendChild(wrapper);
       });
-
-      document.getElementById('readingInterpretationSection').classList.remove('hidden');
-      renderOverallReadings();
-      generatePromptText();
     }
 
-    function generatePromptText() {
-      const userQuestion = document.getElementById('userQuestion').value.trim() || "尋求近期的靈性與生活指引";
-      const spreadPositions = {
-        'single': ['聖示指引'],
-        'three': ['過去/根源', '現在/狀態', '未來/指引'],
-        'four': ['身體/能量', '心智/情緒', '靈魂/訊息', '大地特別指引']
-      }[currentSpread];
+    function buildOverallReading() {
+      const container = document.getElementById('overallReadingsContent');
+      const question = document.getElementById('userQuestion').value.trim();
+      
+      let html = '';
+      if (question) {
+        html += `<div class="p-4 rounded-2xl bg-earth-linen/80 border border-earth-sand mb-4"><span class="text-xs font-bold text-earth-clay uppercase tracking-wider block mb-1">您的祈請問題</span><p class="text-earth-espresso font-serif italic">「${question}」</p></div>`;
+      }
 
-      let cardDetailsStr = drawnCards.map((c, i) => {
-        const pos = spreadPositions[i] || `位置 ${i+1}`;
-        return `・【${pos}】${c.name} (${c.title}) - 核心指引：${c.message} | 象徵：${c.symbolism}`;
-      }).join('\n');
+      html += `<div class="space-y-3 font-serif">`;
+      drawnCardsState.forEach((c, idx) => {
+        html += `
+          <div class="p-4 rounded-2xl bg-white/80 border border-earth-sand/80 shadow-xs space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-earth-terracotta">${c.name}</span>
+              <span class="text-[11px] text-earth-taupe">${c.keyword}</span>
+            </div>
+            <p class="text-xs font-bold text-earth-espresso">${c.message}</p>
+            <p class="text-xs text-earth-taupe leading-relaxed">${c.meaning}</p>
+          </div>
+        `;
+      });
+      html += `</div>`;
+      container.innerHTML = html;
+    }
 
-      const fullPrompt = `你是一位充滿慈悲與靈性智慧的大天使神諭卡解牌大師。請針對我的問題與抽出的牌組，提供詳細的大地靈性解析。
-
-【問卜者提問】
-${userQuestion}
-
-【採用的牌陣模式】
-${currentSpread === 'single' ? '每日單牌神諭' : currentSpread === 'three' ? '三位一體陣 (過去/現在/未來)' : '四方天界陣 (身/心/靈/指引)'}
-
-【抽出的天使卡牌組合】
-${cardDetailsStr}
-
-【解析需求】
-1. 分析這組牌呈現的大地扎根能量與心靈頻率。
-2. 針對我的問題，給予具體且暖心的解讀與建議。
-3. 提供一段可以在日常生活中進行的大地靜心與祈禱指引。`;
-
-      document.getElementById('promptTextarea').value = fullPrompt;
+    function buildPromptText() {
+      const question = document.getElementById('userQuestion').value.trim() || "今日整體靈性與大地能量指引";
+      const cardNames = drawnCardsState.map(c => `${c.name} (${c.title})`).join("、");
+      const prompt = `請以溫暖、充滿大自然療癒力與大天使慈悲智慧的口吻，針對使用者提出的問題：「${question}」，以及抽出的神諭卡牌組合 [${cardNames}]，提供一段深度的靈性解析與具體的實踐行動建議。語氣請保持溫暖、堅定且具備大地氣息。`;
+      document.getElementById('promptTextarea').value = prompt;
     }
 
     function copyPromptToClipboard() {
+      playChime();
       const textarea = document.getElementById('promptTextarea');
       textarea.select();
-      document.execCommand('copy');
-
-      const copyBtnText = document.getElementById('copyBtnText');
-      copyBtnText.innerText = "已成功複製！";
-      setTimeout(() => {
-        copyBtnText.innerText = "複製 Prompt 提示詞";
-      }, 2000);
+      navigator.clipboard.writeText(textarea.value);
+      const btnText = document.getElementById('copyBtnText');
+      btnText.innerText = "已複製成功！";
+      setTimeout(() => { btnText.innerText = "複製 Prompt 提示詞"; }, 2000);
     }
 
-    function flipCardElement(el) {
-      playCrystalSound('flip');
-      const inner = el.querySelector('.card-inner');
-      inner.classList.toggle('rotate-y-180');
-    }
-
-    function renderOverallReadings() {
-      const container = document.getElementById('overallReadingsContent');
-      container.innerHTML = '';
-
-      drawnCards.forEach(card => {
-        const item = `
-          <div class="bg-white/90 border border-earth-sand rounded-2xl p-4 space-y-2 shadow-sm">
-            <div class="flex items-center justify-between">
-              <h5 class="font-bold text-earth-espresso font-serif text-sm">${card.name} — ${card.title}</h5>
-              <span class="text-xs font-bold text-earth-clay px-3 py-0.5 rounded-full bg-earth-linen border border-earth-sand">${card.keyword}</span>
-            </div>
-            <p class="text-xs text-earth-clay italic font-serif">聖義神諭：${card.message}</p>
-            <p class="text-xs text-earth-espresso"><strong class="text-earth-terracotta font-bold">修持行動：</strong>${card.action}</p>
-          </div>
-        `;
-        container.insertAdjacentHTML('beforeend', item);
-      });
-    }
-
-    async function generateAIReading() {
-      const aiBox = document.getElementById('aiOutputBox');
-      const aiText = document.getElementById('aiTextContent');
-      aiBox.classList.remove('hidden');
-      aiText.innerHTML = `
+    // Simulated AI Reading
+    function generateAIReading() {
+      playChime();
+      const box = document.getElementById('aiOutputBox');
+      const content = document.getElementById('aiTextContent');
+      box.classList.remove('hidden');
+      
+      content.innerHTML = `
         <div class="flex items-center space-x-3 text-earth-terracotta py-4 justify-center">
           <i class="fa-solid fa-spinner fa-spin text-xl"></i>
-          <span>正在連結大地溫暖頻率進行靈性解析...</span>
+          <span>正在連結大地光芒與大天使智慧進行深度解析中...</span>
         </div>
       `;
 
-      const userQuestion = document.getElementById('userQuestion').value.trim() || "尋求目前的靈性與生活指引";
-      const drawnNames = drawnCards.map((c, i) => `【卡牌 ${i+1}】${c.name} (${c.title}) - 核心：${c.message}`).join("\n");
+      setTimeout(() => {
+        const question = document.getElementById('userQuestion').value.trim() || "今日靈性指引";
+        const cardsDesc = drawnCardsState.map(c => `【${c.name}】的核心訊息是「${c.message}」，其象徵意涵為${c.meaning}`).join("；");
+        
+        let aiText = `親愛的光之行者，當你提出「${question}」並抽出了這組神諭卡時，大天使與大地母親正溫柔地將光芒灑落你的身邊。\n\n`;
+        aiText += `從牌卡中我們看到：${cardsDesc}。\n\n`;
+        aiText += `大地靈性指引：\n`;
+        aiText += `目前的你正處於能量轉化與沉澱的黃金時期。不需要過度焦慮外在的變化，正如大地的節氣更迭各有其美，你的生命藍圖也正在穩健開展。請給自己多一點耐心與擁抱，信任每一步安排都是最好的滋養。\n\n`;
+        aiText += `✨ 實踐建議：\n`;
+        aiText += `今日不妨撥出十分鐘接觸大自然、深呼吸，並落實牌卡給予的行動指引：${drawnCardsState[0].action}`;
 
-      const systemPrompt = "你是一位充滿慈悲與靈性智慧的大天使神諭卡解牌大師。請用溫柔、鼓勵且明亮大地的口吻，針對問卜者的問題與抽出的天使牌卡進行深度靈性解析。內容需包含：1. 大地扎根能量與心靈狀態，2. 針對問卜者問題的具體指引，3. 建議的每日靜心與扎根行動。";
-      const userPrompt = `問卜者的問題：${userQuestion}\n\n抽出的卡牌組合：\n${drawnNames}\n\n請為問卜者提供一份充滿慈悲與暖光的靈性解析報告。`;
-
-      const apiKey = ""; 
-      
-      if (!apiKey) {
-        setTimeout(() => {
-          aiText.innerText = `✨【大天使大地慈悲智慧指引】\n\n1. 牌陣整體能量：\n您所抽出的聖牌顯化出溫暖強大的扎根力量。大天使正提醒您保持信心，感受雙腳踏在大地上的穩定感，讓焦慮在日光中消融。\n\n2. 針對問題 (${userQuestion}) 的指引：\n請傾聽您內心最深處的初衷與直覺。當前的轉折點正是讓您重新整理優先順序的神聖契機，無需急躁，一步一腳印地前進即可。\n\n3. 每日扎根行動：\n「深呼吸，感受大地無條件的滋養與平安。我選擇相信宇宙與大天使溫柔的神聖安排。」`;
-        }, 800);
-        return;
-      }
-
-      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
-
-      try {
-        const response = await fetch(apiUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: userPrompt }] }],
-            systemInstruction: { parts: [{ text: systemPrompt }] }
-          })
-        });
-
-        if (!response.ok) throw new Error(`HTTP Error Status ${response.status}`);
-        const data = await response.json();
-        const textResult = data.candidates?.[0]?.content?.parts?.[0]?.text;
-
-        aiText.innerText = textResult || "✨【大天使祝福指引】\n請相信您當下的直覺與內在力量，大天使永遠護佑著您。";
-      } catch (err) {
-        aiText.innerText = "✨【大天使祝福訊息】\n親愛的，目前的牌卡組合正提醒你：無論眼前遇到什麼樣的挑戰，請相信內在神聖的大地力量。";
-      }
+        content.innerHTML = aiText;
+      }, 1500);
     }
 
-    function openModal(cardId) {
+    // Modal Control
+    function openCardModal(cardId) {
+      playChime();
       const card = CARDS_DATA.find(c => c.id === cardId);
       if (!card) return;
 
       const modalContent = document.getElementById('modalContent');
-
       modalContent.innerHTML = `
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-          <div class="w-full h-80 rounded-3xl bg-gradient-to-br ${card.bgGradient} border-2 ${card.borderColor} p-5 flex flex-col justify-between relative overflow-hidden shadow-lg">
-            <div class="flex justify-between items-start z-10">
-              <span class="text-xs font-bold text-earth-clay bg-white/80 px-2.5 py-1 rounded-xl">#${card.id}</span>
-              <span class="text-xs font-bold text-earth-terracotta bg-white/80 px-2.5 py-1 rounded-xl">${card.keyword}</span>
+        <div class="flex flex-col sm:flex-row gap-6 items-center">
+          <div class="w-44 h-72 rounded-3xl bg-earth-cream border-2 border-earth-amber p-3 flex flex-col justify-between items-center text-center shadow-lg relative overflow-hidden flex-shrink-0">
+            <div class="w-full flex justify-between items-center text-[10px] text-earth-taupe font-bold">
+              <span>No. ${card.imgName}</span>
+              <i class="fa-solid fa-sun text-earth-amber"></i>
             </div>
-
-            <div class="my-auto flex flex-col items-center space-y-3 z-10">
-              <div class="p-3.5 rounded-full bg-white/70 border border-earth-sand shadow-sm">
-                ${card.svgIcon}
-              </div>
-              <div class="text-center">
-                <h3 class="text-xl font-bold text-earth-espresso font-serif">${card.name}</h3>
-                <p class="text-xs text-earth-clay font-bold">${card.title}</p>
-              </div>
+            <div class="w-full h-36 rounded-2xl bg-earth-linen border border-earth-sand overflow-hidden relative shadow-inner">
+              <img src="cards/${card.imgName}.png" alt="${card.name}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23F3ECE3\'/><text x=\'50\' y=\'50\' font-size=\'12\' fill=\'%23A6533A\' text-anchor=\'middle\' dominant-baseline=\'middle\'>${card.name.split(' ')[0]}</text></svg>';">
+            </div>
+            <div class="space-y-0.5 w-full">
+              <h4 class="text-xs font-serif font-bold text-earth-espresso">${card.name}</h4>
+              <p class="text-[10px] text-earth-terracotta font-bold">${card.title}</p>
             </div>
           </div>
-
-          <div class="space-y-4">
-            <h3 class="text-2xl font-bold text-earth-espresso font-serif">${card.name}</h3>
-            <p class="text-sm font-semibold text-earth-clay italic bg-earth-linen/80 p-3.5 rounded-2xl border border-earth-sand">
-              ${card.message}
-            </p>
-            <div class="space-y-2.5 text-xs text-earth-espresso font-sans">
-              <p><strong class="text-earth-terracotta">象徵元素：</strong>${card.symbolism}</p>
-              <p><strong class="text-earth-terracotta">神諭聖義：</strong>${card.meaning}</p>
-              <p><strong class="text-earth-terracotta">靈性指引行動：</strong>${card.action}</p>
+          <div class="space-y-4 text-left flex-grow font-serif">
+            <div>
+              <span class="text-[11px] font-sans font-bold text-earth-clay bg-earth-amber/15 px-3 py-1 rounded-full border border-earth-amber/40">關鍵字：${card.keyword}</span>
+              <h3 class="text-xl font-bold text-earth-espresso mt-2">${card.name}</h3>
+              <p class="text-xs text-earth-terracotta font-bold">${card.title}</p>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-earth-linen/80 border border-earth-sand space-y-1">
+              <span class="text-[10px] font-bold text-earth-clay uppercase tracking-wider">神諭金句</span>
+              <p class="text-xs font-serif font-bold text-earth-espresso">${card.message}</p>
+            </div>
+            <div class="space-y-2 text-xs text-earth-espresso leading-relaxed">
+              <p><strong class="text-earth-clay">象徵意涵：</strong>${card.symbolism}</p>
+              <p><strong class="text-earth-clay">靈性涵義：</strong>${card.meaning}</p>
+              <p><strong class="text-earth-clay">實踐指引：</strong>${card.action}</p>
             </div>
           </div>
         </div>
@@ -1007,110 +894,81 @@ ${cardDetailsStr}
     }
 
     function closeModal() {
+      playChime();
       document.getElementById('cardModal').classList.add('hidden');
     }
 
+    // Journal Management
     function saveCurrentReading() {
-      if (!drawnCards.length) return;
+      playChime();
+      if (drawnCardsState.length === 0) return;
 
-      const userQ = document.getElementById('userQuestion').value || '未填寫問題';
-      const aiContent = document.getElementById('aiTextContent').innerText;
-
-      const log = {
+      const journal = JSON.parse(localStorage.getItem('earth_oracle_journal') || '[]');
+      const entry = {
         id: Date.now(),
-        date: new Date().toLocaleString('zh-TW'),
-        question: userQ,
+        date: new Date().toLocaleDateString('zh-TW', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }),
+        question: document.getElementById('userQuestion').value.trim() || "日常靈性指引",
         spread: currentSpread,
-        cards: drawnCards.map(c => ({ name: c.name, title: c.title, message: c.message })),
-        aiReading: aiContent.includes('正在連結') ? '' : aiContent
+        cards: drawnCardsState.map(c => ({ name: c.name, title: c.title, imgName: c.imgName }))
       };
 
-      journalLogs.unshift(log);
-      localStorage.setItem('bright_earth_journal_logs', JSON.stringify(journalLogs));
-      renderJournal();
+      journal.unshift(entry);
+      localStorage.setItem('earth_oracle_journal', JSON.stringify(journal));
+      alert('已成功將此次占卜紀錄存入靈性日誌！');
+      switchTab('journal');
     }
 
     function renderJournal() {
-      const list = document.getElementById('journalList');
-      list.innerHTML = '';
+      const container = document.getElementById('journalList');
+      const journal = JSON.parse(localStorage.getItem('earth_oracle_journal') || '[]');
 
-      if (!journalLogs.length) {
-        list.innerHTML = `
-          <div class="text-center py-16 text-earth-taupe/60 space-y-3">
-            <i class="fa-solid fa-seedling text-4xl text-earth-sage"></i>
-            <p class="text-sm font-serif">尚無占卜歷史紀錄</p>
+      if (journal.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-16 glass-card rounded-3xl space-y-3">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-earth-linen flex items-center justify-center text-earth-taupe border border-earth-sand">
+              <i class="fa-solid fa-book-open text-2xl"></i>
+            </div>
+            <p class="text-sm font-serif text-earth-espresso font-bold">目前尚無占卜紀錄</p>
+            <p class="text-xs text-earth-taupe">完成抽卡後，點擊「儲存此次占卜紀錄」即可在這裡留下心靈足跡。</p>
           </div>
         `;
         return;
       }
 
-      journalLogs.forEach(log => {
-        const item = `
-          <div class="glass-card border border-earth-sand rounded-2xl p-5 space-y-3 shadow-sm">
-            <div class="flex items-center justify-between border-b border-earth-sand/60 pb-2">
-              <span class="text-xs text-earth-clay font-bold"><i class="fa-solid fa-calendar-day mr-1.5"></i>${log.date}</span>
-              <span class="text-[11px] text-earth-terracotta bg-earth-linen px-3 py-0.5 rounded-full border border-earth-sand">牌陣：${log.spread}</span>
-            </div>
-            <p class="text-xs text-earth-espresso"><strong class="text-earth-terracotta">請教問題：</strong>${log.question}</p>
-            <div class="flex flex-wrap gap-2 pt-1">
-              ${log.cards.map(c => `<span class="text-[11px] bg-white border border-earth-sand text-earth-clay px-2.5 py-1 rounded-xl font-medium">${c.name}</span>`).join('')}
-            </div>
-            ${log.aiReading ? `<div class="text-xs text-earth-espresso/90 bg-white/90 p-3.5 rounded-xl border border-earth-sand mt-2 font-serif">${log.aiReading}</div>` : ''}
+      container.innerHTML = journal.map(item => `
+        <div class="glass-card rounded-3xl p-6 space-y-4 shadow-md">
+          <div class="flex items-center justify-between border-b border-earth-sand pb-3">
+            <span class="text-xs font-bold text-earth-clay font-sans"><i class="fa-solid fa-calendar-days mr-1.5 text-earth-amber"></i>${item.date}</span>
+            <span class="text-[11px] px-3 py-0.5 rounded-full bg-earth-terracotta/10 text-earth-terracotta border border-earth-terracotta/30 font-bold font-sans">
+              ${item.spread === 'single' ? '每日神諭' : item.spread === 'three' ? '三位一體陣' : '四方天界陣'}
+            </span>
           </div>
-        `;
-        list.insertAdjacentHTML('beforeend', item);
-      });
+          <div class="space-y-1">
+            <span class="text-[11px] font-bold text-earth-taupe uppercase tracking-wider">提問主題</span>
+            <p class="text-sm font-serif font-bold text-earth-espresso">「${item.question}」</p>
+          </div>
+          <div class="flex flex-wrap gap-3 pt-2">
+            ${item.cards.map(c => `
+              <div class="flex items-center space-x-2 px-3 py-2 rounded-2xl bg-earth-linen/80 border border-earth-sand shadow-xs">
+                <img src="cards/${c.imgName}.png" alt="${c.name}" class="w-8 h-10 object-cover rounded-lg" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23F3ECE3\'/><text x=\'50\' y=\'50\' font-size=\'18\' fill=\'--earth-clay\' text-anchor=\'middle\' dominant-baseline=\'middle\'>🎴</text></svg>';">
+                <div class="text-left">
+                  <p class="text-xs font-serif font-bold text-earth-espresso line-clamp-1">${c.name}</p>
+                  <p class="text-[10px] text-earth-terracotta">${c.title}</p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
     }
 
     function clearJournal() {
-      journalLogs = [];
-      localStorage.removeItem('bright_earth_journal_logs');
-      renderJournal();
-    }
-
-    function initStarCanvas() {
-      const canvas = document.getElementById('starsCanvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      let width = canvas.width = window.innerWidth;
-      let height = canvas.height = window.innerHeight;
-
-      window.addEventListener('resize', () => {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-      });
-
-      // Warm Golden Sunbeam Dust Particles
-      const particles = Array.from({length: 80}, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        radius: Math.random() * 2.5 + 0.8,
-        alpha: Math.random(),
-        speed: Math.random() * 0.008 + 0.003,
-        color: Math.random() > 0.4 ? '#D99B26' : '#C86D51'
-      }));
-
-      function animateParticles() {
-        ctx.clearRect(0, 0, width, height);
-        particles.forEach(s => {
-          s.alpha += s.speed;
-          if (s.alpha > 0.85 || s.alpha < 0.1) s.speed = -s.speed;
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-          ctx.fillStyle = s.color;
-          ctx.globalAlpha = Math.abs(s.alpha);
-          ctx.fill();
-        });
-        ctx.globalAlpha = 1;
-        requestAnimationFrame(animateParticles);
+      if (confirm('確定要清除所有占卜紀錄嗎？此動作無法復原。')) {
+        playChime();
+        localStorage.removeItem('earth_oracle_journal');
+        renderJournal();
       }
-      animateParticles();
     }
-
-    window.onload = function() {
-      initStarCanvas();
-      renderJournal();
-    };
   </script>
 </body>
 </html>
