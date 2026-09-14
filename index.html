@@ -703,6 +703,8 @@
       // Randomly pick unique cards
       let shuffled = [...CARDS_DATA].sort(() => 0.5 - Math.random());
       drawnCardsState = shuffled.slice(0, count);
+      // 每次重新抽卡時，重置翻牌狀態為背面朝上
+      drawnCardsState.forEach(card => { card.revealed = false; });
 
       renderDrawnCards();
       buildOverallReading();
@@ -713,6 +715,13 @@
       
       // Smooth scroll to results
       document.getElementById('readingInterpretationSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function flipCard(id) {
+      const card = drawnCardsState.find(c => c.id === id);
+      if (!card) return;
+      card.revealed = !card.revealed;
+      renderDrawnCards();
     }
 
     function renderDrawnCards() {
@@ -736,8 +745,8 @@
           <span class="text-xs font-bold text-earth-clay px-3 py-1 rounded-full bg-earth-amber/15 border border-earth-amber/40 shadow-xs">
             ${labels[index]}
           </span>
-          <div class="perspective-1000 w-44 h-72 sm:w-48 sm:h-80 cursor-pointer group" onclick="openCardModal(${card.id})">
-            <div class="w-full h-full relative transform-style-3d transition-transform duration-700 group-hover:rotate-y-180 shadow-xl rounded-3xl">
+          <div class="perspective-1000 w-44 h-72 sm:w-48 sm:h-80 cursor-pointer group" onclick="flipCard(${card.id})">
+            <div class="w-full h-full relative transform-style-3d transition-transform duration-700 ${card.revealed ? 'rotate-y-180' : ''} shadow-xl rounded-3xl">
               <!-- Card Front (Back of card design) -->
               <div class="absolute inset-0 w-full h-full backface-hidden rounded-3xl bg-gradient-to-tr from-earth-terracotta via-earth-amber to-earth-sage p-1">
                 <div class="w-full h-full bg-earth-cream rounded-[22px] flex flex-col justify-between items-center p-4 text-center relative overflow-hidden border border-earth-sand">
@@ -766,7 +775,7 @@
                   <h4 class="text-xs font-serif font-bold text-earth-espresso line-clamp-1">${card.name}</h4>
                   <p class="text-[10px] text-earth-terracotta font-bold">${card.title}</p>
                 </div>
-                <button class="text-[10px] bg-earth-amber/20 hover:bg-earth-amber/30 text-earth-clay px-3 py-1 rounded-full border border-earth-amber/40 font-bold transition-all">
+                <button onclick="event.stopPropagation(); openCardModal(${card.id})" class="text-[10px] bg-earth-amber/20 hover:bg-earth-amber/30 text-earth-clay px-3 py-1 rounded-full border border-earth-amber/40 font-bold transition-all">
                   點擊看完整解說
                 </button>
               </div>
