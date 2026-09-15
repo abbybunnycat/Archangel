@@ -778,10 +778,10 @@
           <span class="text-xs font-bold text-earth-clay px-3 py-1 rounded-full bg-earth-amber/15 border border-earth-amber/40 shadow-xs">
             ${labels[index]}
           </span>
-          <div class="perspective-1000 w-56 h-80 sm:w-64 sm:h-[26rem] cursor-pointer group" onclick="flipCard(${card.id})">
-            <div class="w-full h-full relative transform-style-3d transition-transform duration-700 ${card.revealed ? 'rotate-y-180' : ''} shadow-xl rounded-3xl">
+          <div class="perspective-1000 w-56 h-80 sm:w-64 sm:h-96 cursor-pointer" onclick="flipCard(${card.id})">
+            <div class="w-full h-full relative transform-style-3d transition-transform duration-700 ${card.revealed ? 'rotate-y-180' : ''}">
               <!-- Card Front (Back of card design) -->
-              <div class="absolute inset-0 w-full h-full backface-hidden rounded-3xl border-2 border-earth-amber overflow-hidden">
+              <div class="absolute inset-0 w-full h-full backface-hidden rounded-3xl border-2 border-earth-amber overflow-hidden shadow-xl ${card.revealed ? 'pointer-events-none' : ''}">
                 <!-- 卡背設計圖：與 cards/card-back.jpg 同一張圖 -->
                 <img src="cards/card-back.jpg" alt="牌卡背面設計" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/5 to-black/15"></div>
@@ -793,26 +793,21 @@
                   <div class="text-xs drop-shadow-md"><i class="fa-solid fa-seedling"></i></div>
                 </div>
               </div>
-              <!-- Card Back (Revealed Card) -->
-              <div class="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-3xl bg-earth-cream border-2 border-earth-amber p-2 flex flex-col items-center text-center shadow-md overflow-hidden">
-                <div class="w-full flex justify-between items-center text-[10px] text-earth-taupe font-bold px-1 pt-1">
-                  <span>No. ${card.imgName}</span>
-                  <i class="fa-solid fa-sun text-earth-amber"></i>
-                </div>
-                <!-- 放大圖片區塊並改用 object-contain，完整顯示牌面設計不裁切 -->
-                <div class="w-full flex-1 min-h-0 rounded-2xl bg-earth-linen/80 border border-earth-sand/80 flex items-center justify-center overflow-hidden relative shadow-inner mt-1">
-                  <img src="cards/${card.imgName}.jpg" alt="${card.name}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23F3ECE3\'/><text x=\'50\' y=\'50\' font-size=\'12\' fill=\'%23A6533A\' text-anchor=\'middle\' dominant-baseline=\'middle\'>${card.name.split(' ')[0]}</text></svg>';">
-                </div>
-                <div class="space-y-0.5 w-full mt-1 flex-shrink-0">
-                  <h4 class="text-sm font-serif font-bold text-earth-espresso line-clamp-1">${card.name}</h4>
-                  <p class="text-xs text-earth-terracotta font-bold">${card.title}</p>
-                </div>
-                <button onclick="event.stopPropagation(); openCardModal(${card.id})" class="text-[10px] bg-earth-amber/20 hover:bg-earth-amber/30 text-earth-clay px-3 py-1 rounded-full border border-earth-amber/40 font-bold transition-all mt-1 flex-shrink-0">
-                  點擊看完整解說
-                </button>
+              <!-- Card Back (Revealed Card) — 圖片本身就是完整卡牌，不再額外加外框文字 -->
+              <div class="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-3xl overflow-hidden shadow-xl bg-earth-linen ${card.revealed ? '' : 'pointer-events-none'}">
+                <img src="cards/${card.imgName}.jpg" alt="${card.name}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23F3ECE3\'/><text x=\'50\' y=\'50\' font-size=\'12\' fill=\'%23A6533A\' text-anchor=\'middle\' dominant-baseline=\'middle\'>${card.name.split(' ')[0]}</text></svg>';">
               </div>
             </div>
           </div>
+          ${card.revealed ? `
+          <div class="space-y-0.5 w-full text-center">
+            <h4 class="text-sm font-serif font-bold text-earth-espresso line-clamp-1">${card.name}</h4>
+            <p class="text-xs text-earth-terracotta font-bold">${card.title}</p>
+          </div>
+          <button onclick="openCardModal(${card.id})" class="text-[10px] bg-earth-amber/20 hover:bg-earth-amber/30 text-earth-clay px-3 py-1 rounded-full border border-earth-amber/40 font-bold transition-all">
+            點擊看完整解說
+          </button>
+          ` : ''}
         `;
         area.appendChild(wrapper);
       });
@@ -899,18 +894,11 @@
       const modalContent = document.getElementById('modalContent');
       modalContent.innerHTML = `
         <div class="flex flex-col sm:flex-row gap-6 items-center">
-          <div class="w-52 h-[26rem] rounded-3xl bg-earth-cream border-2 border-earth-amber p-3 flex flex-col items-center text-center shadow-lg relative overflow-hidden flex-shrink-0">
-            <div class="w-full flex justify-between items-center text-[10px] text-earth-taupe font-bold">
-              <span>No. ${card.imgName}</span>
-              <i class="fa-solid fa-sun text-earth-amber"></i>
-            </div>
-            <div class="w-full flex-1 min-h-0 rounded-2xl bg-earth-linen border border-earth-sand overflow-hidden relative shadow-inner mt-1">
+          <div class="w-52 h-[26rem] flex-shrink-0 flex flex-col items-center gap-2">
+            <div class="w-full flex-1 min-h-0 rounded-3xl overflow-hidden shadow-lg bg-earth-linen">
               <img src="cards/${card.imgName}.jpg" alt="${card.name}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23F3ECE3\'/><text x=\'50\' y=\'50\' font-size=\'12\' fill=\'%23A6533A\' text-anchor=\'middle\' dominant-baseline=\'middle\'>${card.name.split(' ')[0]}</text></svg>';">
             </div>
-            <div class="space-y-0.5 w-full mt-1 flex-shrink-0">
-              <h4 class="text-xs font-serif font-bold text-earth-espresso">${card.name}</h4>
-              <p class="text-[10px] text-earth-terracotta font-bold">${card.title}</p>
-            </div>
+            <span class="text-[10px] text-earth-taupe font-bold">No. ${card.imgName}</span>
           </div>
           <div class="space-y-4 text-left flex-grow font-serif">
             <div>
