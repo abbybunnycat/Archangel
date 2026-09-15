@@ -95,16 +95,17 @@
       100% { transform: translateX(0) rotate(0deg); }
     }
     #deckStack.shuffling {
-      animation: shuffleWiggle 1.3s ease-in-out;
+      animation: shuffleWiggle 0.9s ease-in-out infinite;
       pointer-events: none;
     }
 
-    /* 洗牌時扇形散開又收回的擬真牌卡效果 */
+    /* 洗牌時扇形散開又收回的擬真牌卡效果（散開更明顯、動作放慢） */
     @keyframes shuffleFan {
       0%   { transform: translate(0,0) rotate(0deg) scale(1); opacity: 0; }
-      8%   { opacity: 1; }
-      45%  { transform: translate(var(--tx), var(--ty)) rotate(var(--tr)) scale(1.03); opacity: 1; }
-      75%  { transform: translate(calc(var(--tx) * -0.35), calc(var(--ty) * -0.35)) rotate(calc(var(--tr) * -0.5)) scale(1); opacity: 1; }
+      6%   { opacity: 1; }
+      42%  { transform: translate(var(--tx), var(--ty)) rotate(var(--tr)) scale(1.05); opacity: 1; }
+      50%  { transform: translate(var(--tx), var(--ty)) rotate(var(--tr)) scale(1.05); opacity: 1; }
+      85%  { transform: translate(calc(var(--tx) * -0.3), calc(var(--ty) * -0.3)) rotate(calc(var(--tr) * -0.4)) scale(1); opacity: 1; }
       100% { transform: translate(0,0) rotate(0deg) scale(0.92); opacity: 0; }
     }
     .shuffle-fx-card {
@@ -118,7 +119,7 @@
       border: 2px solid rgba(255,255,255,0.55);
       box-shadow: 0 12px 28px rgba(54, 39, 30, 0.3);
       animation-name: shuffleFan;
-      animation-duration: 1.05s;
+      animation-duration: 3.6s;
       animation-timing-function: ease-in-out;
       animation-fill-mode: forwards;
     }
@@ -220,7 +221,7 @@
         </div>
       </div>
 
-      <div class="max-w-2xl mx-auto glass-card rounded-3xl p-6 shadow-xl shadow-earth-terracotta/5 relative overflow-hidden">
+      <div id="questionBox" class="max-w-2xl mx-auto glass-card rounded-3xl p-6 shadow-xl shadow-earth-terracotta/5 relative overflow-hidden">
         <label class="block text-xs font-bold text-earth-clay mb-2 tracking-wider uppercase flex items-center justify-between">
           <span class="flex items-center gap-2">
             <i class="fa-solid fa-feather-pointed text-earth-amber"></i> 請寫下您想請教大天使的問題
@@ -734,22 +735,29 @@
 
     // Draw Cards Logic
     let isShuffling = false;
-    const SHUFFLE_DURATION = 1300; // ms，需與 CSS 動畫時間搭配
+    const SHUFFLE_DURATION = 4300; // ms，原本 1300ms 再加 3 秒，動作放慢
 
     function playShuffleFx(stack) {
       const fx = document.createElement('div');
       fx.className = 'shuffle-fx-layer absolute inset-0 z-30 pointer-events-none';
+
+      // 讓散牌的水平範圍對齊上方問題框的寬度
+      const stackRect = stack.getBoundingClientRect();
+      const refBox = document.getElementById('questionBox');
+      const refWidth = refBox ? refBox.getBoundingClientRect().width : stackRect.width * 2.5;
+      const maxSpreadX = Math.max(90, (refWidth - stackRect.width) / 2);
+
       const count = 6;
       for (let i = 0; i < count; i++) {
         const card = document.createElement('div');
         card.className = 'shuffle-fx-card';
-        const angle = (Math.random() * 70 - 35).toFixed(1) + 'deg';       // -35~35 度
-        const tx = (Math.random() * 170 - 85).toFixed(0) + 'px';          // -85~85 px
-        const ty = (Math.random() * 60 - 30).toFixed(0) + 'px';           // -30~30 px
+        const angle = (Math.random() * 70 - 35).toFixed(1) + 'deg';                       // -35~35 度
+        const tx = (Math.random() * maxSpreadX * 2 - maxSpreadX).toFixed(0) + 'px';       // 對齊問題框寬度的散開範圍
+        const ty = (Math.random() * 80 - 40).toFixed(0) + 'px';                           // -40~40 px
         card.style.setProperty('--tr', angle);
         card.style.setProperty('--tx', tx);
         card.style.setProperty('--ty', ty);
-        card.style.animationDelay = (i * 0.06) + 's';
+        card.style.animationDelay = (i * 0.12) + 's';
         fx.appendChild(card);
       }
       stack.appendChild(fx);
