@@ -111,7 +111,10 @@
       position: absolute;
       inset: 0;
       border-radius: 1.5rem;
-      background: linear-gradient(135deg, #C86D51, #D99B26, #7E8B6C);
+      background-image: url('cards/card-back.jpg');
+      background-size: cover;
+      background-position: center;
+      background-color: #D99B26;
       border: 2px solid rgba(255,255,255,0.55);
       box-shadow: 0 12px 28px rgba(54, 39, 30, 0.3);
       animation-name: shuffleFan;
@@ -228,7 +231,7 @@
         <div class="flex flex-col sm:flex-row gap-3">
           <input type="text" id="userQuestion" placeholder="例如：我近期在職涯選擇上感到有些盲目，請賜予靈性的方向..." class="w-full bg-white/90 border border-earth-sand rounded-2xl px-4 py-3 text-sm text-earth-espresso placeholder-earth-taupe/50 focus:outline-none focus:border-earth-terracotta focus:ring-2 focus:ring-earth-terracotta/20 transition-all font-sans">
           
-          <button onclick="shuffleAndReset()" class="px-6 py-3 bg-gradient-to-r from-earth-terracotta to-earth-amber hover:opacity-95 text-white font-bold text-sm rounded-2xl transition-all shadow-md shadow-earth-terracotta/20 flex items-center justify-center whitespace-nowrap active:scale-95">
+          <button onclick="drawCards()" class="px-6 py-3 bg-gradient-to-r from-earth-terracotta to-earth-amber hover:opacity-95 text-white font-bold text-sm rounded-2xl transition-all shadow-md shadow-earth-terracotta/20 flex items-center justify-center whitespace-nowrap active:scale-95">
             <i class="fa-solid fa-arrows-rotate mr-2"></i>洗牌抽卡
           </button>
         </div>
@@ -306,6 +309,18 @@
           <div id="overallReadingsContent" class="space-y-4 text-earth-espresso text-base leading-loose">
           </div>
 
+          <div id="aiOutputBox" class="hidden bg-white/95 border border-earth-terracotta/40 rounded-2xl p-6 space-y-3 shadow-lg relative">
+            <div class="flex items-center text-earth-clay text-xs font-bold tracking-wider uppercase">
+              <i class="fa-solid fa-sun mr-2 text-earth-amber"></i>大天使與大地智者智慧啟示
+            </div>
+            <div id="aiTextContent" class="text-earth-espresso text-base leading-loose whitespace-pre-line font-serif">
+              <div class="flex items-center space-x-3 text-earth-terracotta py-4 justify-center">
+                <i class="fa-solid fa-spinner fa-spin text-xl"></i>
+                <span>正在連結大地光芒進行靈性解讀中...</span>
+              </div>
+            </div>
+          </div>
+
           <div class="bg-earth-linen/70 border border-earth-sand rounded-2xl p-5 space-y-3 shadow-inner">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-earth-clay uppercase tracking-wider flex items-center gap-2">
@@ -317,18 +332,6 @@
               </button>
             </div>
             <textarea id="promptTextarea" readonly class="w-full h-28 bg-white/80 border border-earth-sand rounded-xl p-3 text-xs text-earth-espresso font-mono resize-none focus:outline-none"></textarea>
-          </div>
-
-          <div id="aiOutputBox" class="hidden bg-white/95 border border-earth-terracotta/40 rounded-2xl p-6 space-y-3 shadow-lg relative">
-            <div class="flex items-center text-earth-clay text-xs font-bold tracking-wider uppercase">
-              <i class="fa-solid fa-sun mr-2 text-earth-amber"></i>大天使與大地智者智慧啟示
-            </div>
-            <div id="aiTextContent" class="text-earth-espresso text-base leading-loose whitespace-pre-line font-serif">
-              <div class="flex items-center space-x-3 text-earth-terracotta py-4 justify-center">
-                <i class="fa-solid fa-spinner fa-spin text-xl"></i>
-                <span>正在連結大地光芒進行靈性解讀中...</span>
-              </div>
-            </div>
           </div>
 
           <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-earth-sand">
@@ -790,7 +793,8 @@
         isShuffling = false;
 
         // Smooth scroll to results
-        document.getElementById('readingInterpretationSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // 停留在翻牌卡面區域，而非直接跳到文字解說
+        document.getElementById('drawnCardsArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, SHUFFLE_DURATION);
     }
 
