@@ -914,6 +914,86 @@
     }
 
     // Simulated AI Reading
+    // 依卡牌關鍵字判斷本次占卜的主要能量主題，讓「靈性指引」不再千篇一律
+    const READING_THEMES = {
+      courage: { kws: ['勇氣','守護','堅定','無畏','疑慮'], pool: [
+        '這次抽到的卡牌指向「勇氣」的主題——你可能正站在某個需要做出決定或跨出舒適圈的時刻。你所需要的力量其實早已具足，只是還沒被你完全相信。',
+        '卡牌的能量提醒你，恐懼往往只是尚未被正視的訊號。試著把注意力從「萬一失敗怎麼辦」，轉向「如果我相信自己，會怎麼樣」。'
+      ]},
+      communication: { kws: ['溝通','創作','訊息','表達'], pool: [
+        '這次的牌陣圍繞著「表達與連結」——也許有些話你一直放在心裡沒有說出口。試著用最真實、不加修飾的方式，讓對方（或你自己）聽見。',
+        '卡牌顯示，此刻的你適合把內在的靈感轉化成具體的文字或行動。不需要等到完美，先讓聲音被聽見，能量自然會流動。'
+      ]},
+      healing: { kws: ['療癒','健康','修復','心輪','情感'], pool: [
+        '牌卡的訊息聚焦在「療癒」——你的身體與情緒可能都在提醒你，是時候放慢腳步、好好照顧自己了。允許自己休息，本身就是一種力量。',
+        '這次的指引是關於修復。無論是身體的疲憊，還是情感上尚未癒合的部分，都值得你溫柔以待，不急著催促它變好。'
+      ]},
+      wisdom: { kws: ['洞察','智慧','靈光','覺察','真相','課題'], pool: [
+        '卡牌帶來的是「洞察」的能量——答案很可能已經在你心裡，只是被外界的雜訊蓋過了。找一段安靜的時間，讓內在的聲音浮現。',
+        '這次的訊息提醒你，混亂往往是釐清的前奏。不急著馬上找到解答，靈光乍現的時刻通常來得比預期更快。'
+      ]},
+      relationship: { kws: ['和諧','包容','關係','公平','界線','和平'], pool: [
+        '這次的牌陣圍繞著「關係」的主題——無論是與他人還是與自己的關係，都值得你重新檢視界線是否健康、溝通是否誠實。',
+        '卡牌顯示，和諧不是委屈自己換來的，而是雙方都能被理解、被尊重。也許現在正是設定界線、坦誠對話的好時機。'
+      ]},
+      release: { kws: ['寬恕','轉化','釋放','蛻變','清理','純淨'], pool: [
+        '這次抽到的是「釋放與轉化」的能量——過去的某些包袱，可能已經不再需要你繼續背負。原諒自己，也是往前走的一部分。',
+        '卡牌提醒你，蛻變往往伴隨著陣痛，但你已經走過了最艱難的部分。允許舊有的模式離開，才能為新的自己騰出空間。'
+      ]},
+      spiritual: { kws: ['脈輪','高頻','靈性提升','靈魂','覺醒'], pool: [
+        '這次的訊息與「靈性提升」有關——你可能正處在能量頻率轉換的階段，會感覺特別敏感或容易疲倦，這都是正常的過渡現象。',
+        '卡牌顯示，你的直覺與靈性感知力正在增強。多留意日常中的巧合與徵兆，它們往往藏著重要的提示。'
+      ]},
+      intuition: { kws: ['直覺','月亮','優雅','內省'], pool: [
+        '這次的牌陣圍繞著「直覺」——比起用理性分析所有選項，此刻更適合傾聽身體與心裡那個安靜卻堅定的聲音。',
+        '卡牌提醒你，你比自己以為的更清楚答案。與其向外尋求確認，不如給自己一段安靜獨處的時間。'
+      ]},
+      abundance: { kws: ['豐盛','大地連結','物質顯化','顯化','祈禱'], pool: [
+        '這次的訊息與「豐盛」有關——宇宙的資源比你想像中更充裕，你值得接收，而不需要對「擁有」感到愧疚。',
+        '卡牌顯示，顯化的關鍵在於相信與行動並行。清楚說出你想要的，同時也要為它騰出實際的空間與時間。'
+      ]},
+      joy: { kws: ['快樂','美感','正向','品味','日常之美','感謝'], pool: [
+        '這次的牌陣圍繞著「喜悅與美好」——生活中值得感謝的小事，可能比你以為的更多。試著放慢腳步，重新看見它們。',
+        '卡牌提醒你，快樂不需要理由，也不需要等到「一切都準備好」才允許自己感受它。'
+      ]},
+      default: { kws: [], pool: [
+        '目前的你正處於能量轉化與沉澱的階段。不需要過度焦慮外在的變化，正如大地的節氣更迭各有其美，你的生命藍圖也正在穩健開展。',
+        '這是一個適合往內看的時刻。外在的答案或許還不明朗，但你內在的智慧，比你以為的更清楚方向。',
+        '卡牌提醒你，成長不一定是劇烈的轉變，有時候只是每天多一點點的誠實與溫柔對待自己。'
+      ]}
+    };
+
+    const AI_OPENINGS = [
+      (q) => `親愛的光之行者，當你提出「${q}」並抽出了這組神諭卡時，大天使與大地母親正溫柔地將光芒灑落你的身邊。`,
+      (q) => `親愛的旅人，帶著「${q}」這份提問而來，此刻宇宙的訊息已經透過卡牌，悄悄為你鋪展開來。`,
+      (q) => `深呼吸，讓自己安住在當下。針對「${q}」，大地與天使的智慧正透過這幾張卡為你揭示前行的方向。`,
+      (q) => `謝謝你願意停下腳步，誠心提出「${q}」。大天使們此刻正圍繞在你身邊，傳遞屬於你的訊息。`,
+      (q) => `光之行者，你的提問「${q}」已經被聽見。讓我們一起翻開卡牌背後所承載的靈性智慧。`
+    ];
+
+    const AI_CLOSINGS = [
+      '願你帶著這份指引，穩穩地走過今天，也記得大地與天使的愛，始終與你同在。',
+      '請相信，每一次的抽卡都不是巧合，而是你內在智慧與宇宙同頻的印證。',
+      '無論接下來的路如何展開，請記得你從來不是獨自一人，光一直都在。',
+      '願這份訊息成為你今天的錨點，讓你在紛擾中依然能找到內心的安定。',
+      '大地與天使的祝福將持續圍繞著你，直到你準備好迎接下一個篇章。'
+    ];
+
+    function pickReadingTheme(cards) {
+      const allKeywords = cards.map(c => c.keyword).join(' / ');
+      let bestKey = 'default';
+      let bestScore = 0;
+      const tied = [];
+      Object.keys(READING_THEMES).forEach(key => {
+        if (key === 'default') return;
+        const score = READING_THEMES[key].kws.reduce((sum, kw) => sum + (allKeywords.includes(kw) ? 1 : 0), 0);
+        if (score > bestScore) { bestScore = score; tied.length = 0; tied.push(key); }
+        else if (score === bestScore && score > 0) { tied.push(key); }
+      });
+      if (bestScore === 0) return 'default';
+      return tied[Math.floor(Math.random() * tied.length)];
+    }
+
     function generateAIReading() {
       playChime();
       const box = document.getElementById('aiOutputBox');
@@ -930,13 +1010,20 @@
       setTimeout(() => {
         const question = document.getElementById('userQuestion').value.trim() || "今日靈性指引";
         const cardsDesc = drawnCardsState.map(c => `【${c.name}】的核心訊息是「${c.message}」，其象徵意涵為${c.meaning}`).join("；");
-        
-        let aiText = `親愛的光之行者，當你提出「${question}」並抽出了這組神諭卡時，大天使與大地母親正溫柔地將光芒灑落你的身邊。\n\n`;
+
+        const opening = AI_OPENINGS[Math.floor(Math.random() * AI_OPENINGS.length)](question);
+        const themeKey = pickReadingTheme(drawnCardsState);
+        const guidancePool = READING_THEMES[themeKey].pool;
+        const guidance = guidancePool[Math.floor(Math.random() * guidancePool.length)];
+        const closing = AI_CLOSINGS[Math.floor(Math.random() * AI_CLOSINGS.length)];
+        const actionCard = drawnCardsState[Math.floor(Math.random() * drawnCardsState.length)];
+
+        let aiText = `${opening}\n\n`;
         aiText += `從牌卡中我們看到：${cardsDesc}。\n\n`;
-        aiText += `大地靈性指引：\n`;
-        aiText += `目前的你正處於能量轉化與沉澱的黃金時期。不需要過度焦慮外在的變化，正如大地的節氣更迭各有其美，你的生命藍圖也正在穩健開展。請給自己多一點耐心與擁抱，信任每一步安排都是最好的滋養。\n\n`;
+        aiText += `大地靈性指引：\n${guidance}\n\n`;
         aiText += `✨ 實踐建議：\n`;
-        aiText += `今日不妨撥出十分鐘接觸大自然、深呼吸，並落實牌卡給予的行動指引：${drawnCardsState[0].action}`;
+        aiText += `今日不妨撥出十分鐘接觸大自然、深呼吸，並落實【${actionCard.name}】給予的行動指引：${actionCard.action}\n\n`;
+        aiText += closing;
 
         content.innerHTML = aiText;
       }, 1500);
