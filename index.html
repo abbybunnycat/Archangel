@@ -302,7 +302,7 @@
             </div>
             <button onclick="generateAIReading()" id="btn-ai-reading" class="px-5 py-2.5 bg-gradient-to-r from-earth-terracotta via-earth-amber to-earth-clay hover:opacity-95 text-white rounded-2xl text-xs font-bold shadow-md shadow-earth-terracotta/20 transition-all flex items-center space-x-2 active:scale-95">
               <i class="fa-solid fa-sparkles"></i>
-              <span>生成深度 AI 大地靈性解析</span>
+              <span>重新生成 AI 解析</span>
             </button>
           </div>
 
@@ -786,7 +786,8 @@
         buildPromptText();
 
         document.getElementById('readingInterpretationSection').classList.remove('hidden');
-        document.getElementById('aiOutputBox').classList.add('hidden');
+        // 不需要手動點按鈕，抽完卡直接自動生成深度 AI 解析
+        generateAIReading();
 
         stack.classList.remove('shuffling');
         if (label) label.innerText = '點擊洗牌抽卡';
