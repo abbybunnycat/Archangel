@@ -119,7 +119,7 @@
       border: 2px solid rgba(255,255,255,0.55);
       box-shadow: 0 12px 28px rgba(54, 39, 30, 0.3);
       animation-name: shuffleFan;
-      animation-duration: 3.6s;
+      animation-duration: 5.6s;
       animation-timing-function: ease-in-out;
       animation-fill-mode: forwards;
     }
@@ -735,29 +735,29 @@
 
     // Draw Cards Logic
     let isShuffling = false;
-    const SHUFFLE_DURATION = 4300; // ms，原本 1300ms 再加 3 秒，動作放慢
+    const SHUFFLE_DURATION = 7300; // ms，4300ms 再加 3 秒，加強沉浸感
 
     function playShuffleFx(stack) {
       const fx = document.createElement('div');
       fx.className = 'shuffle-fx-layer absolute inset-0 z-30 pointer-events-none';
 
-      // 讓散牌的水平範圍對齊上方問題框的寬度
+      // 讓散牌的水平範圍對齊並略超出上方問題框的寬度，動作更大
       const stackRect = stack.getBoundingClientRect();
       const refBox = document.getElementById('questionBox');
       const refWidth = refBox ? refBox.getBoundingClientRect().width : stackRect.width * 2.5;
-      const maxSpreadX = Math.max(90, (refWidth - stackRect.width) / 2);
+      const maxSpreadX = Math.max(110, ((refWidth - stackRect.width) / 2) * 1.25);
 
-      const count = 6;
+      const count = 11; // 多加幾張散牌
       for (let i = 0; i < count; i++) {
         const card = document.createElement('div');
         card.className = 'shuffle-fx-card';
-        const angle = (Math.random() * 70 - 35).toFixed(1) + 'deg';                       // -35~35 度
-        const tx = (Math.random() * maxSpreadX * 2 - maxSpreadX).toFixed(0) + 'px';       // 對齊問題框寬度的散開範圍
-        const ty = (Math.random() * 80 - 40).toFixed(0) + 'px';                           // -40~40 px
+        const angle = (Math.random() * 100 - 50).toFixed(1) + 'deg';                      // -50~50 度，轉動幅度加大
+        const tx = (Math.random() * maxSpreadX * 2 - maxSpreadX).toFixed(0) + 'px';       // 對齊並超出問題框寬度的散開範圍
+        const ty = (Math.random() * 120 - 60).toFixed(0) + 'px';                          // -60~60 px，上下散開幅度加大
         card.style.setProperty('--tr', angle);
         card.style.setProperty('--tx', tx);
         card.style.setProperty('--ty', ty);
-        card.style.animationDelay = (i * 0.12) + 's';
+        card.style.animationDelay = (i * 0.15) + 's';
         fx.appendChild(card);
       }
       stack.appendChild(fx);
