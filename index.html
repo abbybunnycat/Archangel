@@ -95,8 +95,29 @@
       100% { transform: translateX(0) rotate(0deg); }
     }
     #deckStack.shuffling {
-      animation: shuffleWiggle 0.9s ease-in-out;
+      animation: shuffleWiggle 1.3s ease-in-out;
       pointer-events: none;
+    }
+
+    /* 洗牌時扇形散開又收回的擬真牌卡效果 */
+    @keyframes shuffleFan {
+      0%   { transform: translate(0,0) rotate(0deg) scale(1); opacity: 0; }
+      8%   { opacity: 1; }
+      45%  { transform: translate(var(--tx), var(--ty)) rotate(var(--tr)) scale(1.03); opacity: 1; }
+      75%  { transform: translate(calc(var(--tx) * -0.35), calc(var(--ty) * -0.35)) rotate(calc(var(--tr) * -0.5)) scale(1); opacity: 1; }
+      100% { transform: translate(0,0) rotate(0deg) scale(0.92); opacity: 0; }
+    }
+    .shuffle-fx-card {
+      position: absolute;
+      inset: 0;
+      border-radius: 1.5rem;
+      background: linear-gradient(135deg, #C86D51, #D99B26, #7E8B6C);
+      border: 2px solid rgba(255,255,255,0.55);
+      box-shadow: 0 12px 28px rgba(54, 39, 30, 0.3);
+      animation-name: shuffleFan;
+      animation-duration: 1.05s;
+      animation-timing-function: ease-in-out;
+      animation-fill-mode: forwards;
     }
 
     ::-webkit-scrollbar { width: 7px; height: 7px; }
@@ -710,6 +731,28 @@
 
     // Draw Cards Logic
     let isShuffling = false;
+    const SHUFFLE_DURATION = 1300; // ms，需與 CSS 動畫時間搭配
+
+    function playShuffleFx(stack) {
+      const fx = document.createElement('div');
+      fx.className = 'shuffle-fx-layer absolute inset-0 z-30 pointer-events-none';
+      const count = 6;
+      for (let i = 0; i < count; i++) {
+        const card = document.createElement('div');
+        card.className = 'shuffle-fx-card';
+        const angle = (Math.random() * 70 - 35).toFixed(1) + 'deg';       // -35~35 度
+        const tx = (Math.random() * 170 - 85).toFixed(0) + 'px';          // -85~85 px
+        const ty = (Math.random() * 60 - 30).toFixed(0) + 'px';           // -30~30 px
+        card.style.setProperty('--tr', angle);
+        card.style.setProperty('--tx', tx);
+        card.style.setProperty('--ty', ty);
+        card.style.animationDelay = (i * 0.06) + 's';
+        fx.appendChild(card);
+      }
+      stack.appendChild(fx);
+      setTimeout(() => fx.remove(), SHUFFLE_DURATION);
+    }
+
     function drawCards() {
       if (isShuffling) return;
       isShuffling = true;
@@ -719,6 +762,7 @@
       const label = document.getElementById('deckLabel');
       stack.classList.add('shuffling');
       if (label) label.innerText = '洗牌中...';
+      playShuffleFx(stack);
 
       // 先隱藏舊結果，讓「洗牌」有明確的過渡感
       document.getElementById('readingInterpretationSection').classList.add('hidden');
@@ -747,7 +791,7 @@
 
         // Smooth scroll to results
         document.getElementById('readingInterpretationSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 900);
+      }, SHUFFLE_DURATION);
     }
 
     function flipCard(id) {
