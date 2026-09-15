@@ -232,27 +232,28 @@
       <div class="space-y-8 pt-2">
         <div id="deckContainer" class="flex justify-center items-center py-4 relative">
           <div id="deckStack" onclick="drawCards()" class="group cursor-pointer relative w-44 h-64 sm:w-48 sm:h-72 rounded-3xl p-1 bg-gradient-to-tr from-earth-terracotta via-earth-amber to-earth-sage shadow-xl shadow-earth-terracotta/15 transition-transform duration-300 hover:scale-105 active:scale-95 animate-float">
-            <div class="w-full h-full rounded-[22px] bg-earth-cream border border-earth-sand p-3 flex flex-col justify-between items-center text-center relative overflow-hidden">
-              <div class="absolute inset-0 bg-[radial-gradient(#c86d51_1px,transparent_1px)] [background-size:14px_14px] opacity-15"></div>
-              
-              <div class="flex justify-between w-full text-earth-amber text-xs">
-                <i class="fa-solid fa-sun"></i>
-                <i class="fa-solid fa-leaf"></i>
-                <i class="fa-solid fa-sun"></i>
-              </div>
+            <div class="w-full h-full rounded-[22px] border border-earth-sand relative overflow-hidden">
+              <!-- 卡背設計圖：請將此圖上傳至 cards/card-back.jpg -->
+              <img src="cards/card-back.jpg" alt="大地天使聖卡 卡背設計" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-black/20"></div>
 
-              <div class="my-auto text-earth-espresso flex flex-col items-center space-y-3 relative z-10">
-                <div class="w-14 h-14 rounded-2xl bg-earth-linen border border-earth-sand flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner">
-                  <i class="fa-solid fa-hands-praying text-3xl text-earth-terracotta"></i>
+              <div class="absolute inset-0 flex flex-col justify-between items-center text-center p-3 z-10">
+                <div class="flex justify-between w-full text-white text-xs drop-shadow-md">
+                  <i class="fa-solid fa-sun"></i>
+                  <i class="fa-solid fa-leaf"></i>
+                  <i class="fa-solid fa-sun"></i>
                 </div>
-                <span id="deckLabel" class="text-xs font-serif font-bold tracking-widest text-earth-clay">點擊洗牌抽卡</span>
-                <span class="text-[10px] text-earth-clay bg-earth-amber/20 px-2.5 py-0.5 rounded-full border border-earth-amber/40 font-bold">大地天使聖卡</span>
-              </div>
 
-              <div class="flex justify-between w-full text-earth-amber text-xs">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-seedling"></i>
-                <i class="fa-solid fa-star"></i>
+                <div class="my-auto text-white flex flex-col items-center space-y-3">
+                  <span id="deckLabel" class="text-xs font-serif font-bold tracking-widest drop-shadow-md">點擊洗牌抽卡</span>
+                  <span class="text-[10px] text-white bg-black/30 px-2.5 py-0.5 rounded-full border border-white/50 font-bold backdrop-blur-sm">大地天使聖卡</span>
+                </div>
+
+                <div class="flex justify-between w-full text-white text-xs drop-shadow-md">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-seedling"></i>
+                  <i class="fa-solid fa-star"></i>
+                </div>
               </div>
             </div>
             
@@ -780,17 +781,16 @@
           <div class="perspective-1000 w-56 h-80 sm:w-64 sm:h-[26rem] cursor-pointer group" onclick="flipCard(${card.id})">
             <div class="w-full h-full relative transform-style-3d transition-transform duration-700 ${card.revealed ? 'rotate-y-180' : ''} shadow-xl rounded-3xl">
               <!-- Card Front (Back of card design) -->
-              <div class="absolute inset-0 w-full h-full backface-hidden rounded-3xl bg-gradient-to-tr from-earth-terracotta via-earth-amber to-earth-sage p-1">
-                <div class="w-full h-full bg-earth-cream rounded-[22px] flex flex-col justify-between items-center p-4 text-center relative overflow-hidden border border-earth-sand">
-                  <div class="absolute inset-0 bg-[radial-gradient(#c86d51_1px,transparent_1px)] [background-size:12px_12px] opacity-15"></div>
-                  <div class="text-earth-amber text-xs"><i class="fa-solid fa-sun"></i></div>
-                  <div class="my-auto space-y-2 relative z-10">
-                    <div class="w-12 h-12 mx-auto rounded-2xl bg-earth-linen flex items-center justify-center border border-earth-sand shadow-inner">
-                      <i class="fa-solid fa-feather-pointed text-earth-terracotta text-lg"></i>
-                    </div>
-                    <p class="text-xs font-serif font-bold text-earth-clay">牌卡翻轉</p>
+              <div class="absolute inset-0 w-full h-full backface-hidden rounded-3xl border-2 border-earth-amber overflow-hidden">
+                <!-- 卡背設計圖：與 cards/card-back.jpg 同一張圖 -->
+                <img src="cards/card-back.jpg" alt="牌卡背面設計" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/5 to-black/15"></div>
+                <div class="relative w-full h-full flex flex-col justify-between items-center p-4 text-center z-10 text-white">
+                  <div class="text-xs drop-shadow-md"><i class="fa-solid fa-sun"></i></div>
+                  <div class="my-auto space-y-2">
+                    <p class="text-xs font-serif font-bold drop-shadow-md">牌卡翻轉</p>
                   </div>
-                  <div class="text-earth-amber text-xs"><i class="fa-solid fa-seedling"></i></div>
+                  <div class="text-xs drop-shadow-md"><i class="fa-solid fa-seedling"></i></div>
                 </div>
               </div>
               <!-- Card Back (Revealed Card) -->
